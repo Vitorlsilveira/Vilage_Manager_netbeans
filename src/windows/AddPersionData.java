@@ -4,6 +4,7 @@ package windows;
 import datas.Persion;
 import DBConections.DBCon;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import logics.Logics;
 
 public class AddPersionData extends javax.swing.JFrame {
@@ -133,12 +134,13 @@ public class AddPersionData extends javax.swing.JFrame {
         DBCon db = new DBCon();
         try {
             db.addPersionToDatabase(persion);
-            
-            jLabel3.setText("Data Added Succesfully !");
-            
-            System.out.println("Done...!!!");
+            JOptionPane.showMessageDialog(this, "Added");
+            jTextField1.setText("");
+            jTextField2.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
         } catch (SQLException ex) {
-            System.out.println("Error "+ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

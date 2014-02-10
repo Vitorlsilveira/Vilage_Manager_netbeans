@@ -8,6 +8,17 @@ public class Persion {
     private String address;
     private String tpnum;
 
+    public Persion(String id,String name,String sex,String address,String tpnum){
+        this.id=id;
+        this.name=name;
+        this.sex=sex;
+        this.address=address;
+        this.tpnum=tpnum;
+    }
+    
+    public Persion(){}
+    
+    
     public String getId() {
         return id;
     }
