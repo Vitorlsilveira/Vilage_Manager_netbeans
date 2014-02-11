@@ -31,7 +31,9 @@ public class DBCon{
     public void addPersionToDatabase(Persion persion) throws SQLException{
         createConnecction();
         String sql = "INSERT INTO persion VALUES('"+persion.getName()+"','"+persion.getId()+"','"+persion.getSex()+"','"
-                + ""+persion.getAddress()+"','"+persion.getTpnum()+"','"+persion.getBirthday()+");";
+                + ""+persion.getAddress()+"','"+persion.getTpnum()+"','"+persion.getBirthday()+"');";
+        
+        System.out.println("sql "+sql);
         
         Statement st = (Statement) con.createStatement();
         
@@ -47,7 +49,7 @@ public class DBCon{
         java.sql.Statement stm=(java.sql.Statement) connection.createStatement();
         ResultSet res=stm.executeQuery(sql);
         if(res.next()){
-            return new Persion(id,res.getString("Name"),res.getString("Sex"),res.getString("Address"),res.getString("TPNum"));
+            return new Persion(id,res.getString("Name"),res.getString("Sex"),res.getString("Address"),res.getString("TPNum"),res.getString("Birth_date"));
         }else{
             return null;
         }
