@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import com.mysql.jdbc.Statement;
+import datas.Home;
 
 import datas.Persion;
 import java.sql.ResultSet;
@@ -40,6 +41,17 @@ public class DBCon{
         st.executeUpdate(sql);
         con.close();
     }
+    
+    public void addHomeToDatabase(Home home) throws SQLException{
+        createConnecction();
+        String sql = "INSERT INTO home VALUES('"+home.getHoemnumber()+"','"+home.getOwner()+"','"+home.getAddress()+"','"
+                + ""+home.getTpnumber()+"','"+home.getNumofmembers()+"');";
+        System.out.println("sql "+sql);
+        Statement st = (Statement) con.createStatement();
+        st.executeUpdate(sql);
+        con.close();
+    }
+    
     
     public Persion searchPersons(String id) throws SQLException, ClassNotFoundException{
         createConnecction();
