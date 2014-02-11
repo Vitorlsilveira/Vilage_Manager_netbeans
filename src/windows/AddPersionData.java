@@ -130,6 +130,7 @@ public class AddPersionData extends javax.swing.JFrame {
         persion.setSex(logic.getSexFromId(jTextField2.getText()));
         persion.setAddress(jTextField4.getText());
         persion.setTpnum(jTextField5.getText());
+	persion.setBirthday(jTextField2.getText());
         
         DBCon db = new DBCon();
         try {

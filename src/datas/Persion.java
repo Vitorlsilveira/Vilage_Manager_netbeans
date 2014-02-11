@@ -7,21 +7,33 @@ public class Persion {
     private String sex;
     private String address;
     private String tpnum;
+    private String birthday;
 
-    public Persion(String id,String name,String sex,String address,String tpnum){
+    public Persion(String id,String name,String sex,String address,String tpnum,String birthday){
         this.id=id;
         this.name=name;
         this.sex=sex;
         this.address=address;
         this.tpnum=tpnum;
+	this.birthday = birthday;
     }
     
     public Persion(){}
     
     
+    public String getBirthday() {
+        return birthday;
+    }
+
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
     public String getId() {
         return id;
     }
+
 
     public void setId(String id) {
         this.id = id;
