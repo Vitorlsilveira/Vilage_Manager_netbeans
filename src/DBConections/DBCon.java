@@ -31,6 +31,7 @@ public class DBCon{
     
     public void addPersionToDatabase(Persion persion) throws SQLException{
         createConnecction();
+        
         String sql = "INSERT INTO persion VALUES('"+persion.getName()+"','"+persion.getId()+"','"+persion.getSex()+"','"
                 + ""+persion.getAddress()+"','"+persion.getTpnum()+"','"+persion.getBirthday()+"');";
         

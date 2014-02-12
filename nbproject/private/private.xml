@@ -4,10 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/kasun/NetBeansProjects/VilageDataManeger/src/vilagedatamaneger/VilageDataManeger.java</file>
-            <file>file:/home/kasun/NetBeansProjects/VilageDataManeger/src/logics/Logics.java</file>
-            <file>file:/home/kasun/NetBeansProjects/VilageDataManeger/src/windows/Selection.java</file>
-            <file>file:/home/kasun/NetBeansProjects/VilageDataManeger/src/windows/Welcome.java</file>
-            <file>file:/home/kasun/NetBeansProjects/VilageDataManeger/src/windows/SerchPersion.java</file>
+            <file>file:/home/kasun/NetBeansProjects/VilageDataManeger/src/securaty/Security.java</file>
+            <file>file:/home/kasun/NetBeansProjects/VilageDataManeger/src/windows/AddHomeData.java</file>
             <file>file:/home/kasun/NetBeansProjects/VilageDataManeger/src/windows/AddPersionData.java</file>
         </group>
     </open-files>

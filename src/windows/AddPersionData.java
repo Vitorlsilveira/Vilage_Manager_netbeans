@@ -4,8 +4,11 @@ package windows;
 import datas.Persion;
 import DBConections.DBCon;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import logics.Logics;
+import securaty.Security;
 
 public class AddPersionData extends javax.swing.JFrame {
 
@@ -122,26 +125,40 @@ public class AddPersionData extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-        
-        Logics logic = new Logics();
-        Persion persion = new Persion();
-        persion.setName(TFname.getText());
-        persion.setId(TFid.getText());
-        persion.setSex(logic.getSexFromId(TFid.getText()));
-        persion.setAddress(TFaddress.getText());
-        persion.setTpnum(TFtp.getText());
-	persion.setBirthday(logic.getBirthDateUsingId(TFid.getText()));
-        
-        DBCon db = new DBCon();
-        try {
-            db.addPersionToDatabase(persion);
-            JOptionPane.showMessageDialog(this, "Added");
-            TFname.setText("");
-            TFid.setText("");
-            TFaddress.setText("");
-            TFtp.setText("");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
+        try {                                          
+            Security security = new Security();
+            Logics logic = new Logics();
+            Persion persion = new Persion();
+            
+            persion.setName(TFname.getText());
+            System.out.println(TFname.getText());
+            
+            persion.setId(TFid.getText());
+            System.out.println(TFid.getText());
+            
+            persion.setSex(logic.getSexFromId(TFid.getText()));
+            persion.setAddress(TFaddress.getText());
+            
+            persion.setTpnum(TFtp.getText());
+            persion.setBirthday(logic.getBirthDateUsingId(TFid.getText()));
+            
+            Persion encryptedPersion = new Persion();
+            encryptedPersion = security.encryptPersion(persion, "ezeon8547");
+            persion.setAddress(encryptedPersion.getId());
+            
+            DBCon db = new DBCon();
+            try {
+                db.addPersionToDatabase(encryptedPersion);
+                JOptionPane.showMessageDialog(this, "Added");
+                TFname.setText("");
+                TFid.setText("");
+                TFaddress.setText("");
+                TFtp.setText("");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(AddPersionData.class.getName()).log(Level.SEVERE, null,ex);
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
 

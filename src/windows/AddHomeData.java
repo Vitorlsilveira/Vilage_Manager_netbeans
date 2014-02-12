@@ -5,6 +5,7 @@ import DBConections.DBCon;
 import datas.Home;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import securaty.Security;
 
 public class AddHomeData extends javax.swing.JFrame {
 
@@ -126,6 +127,7 @@ public class AddHomeData extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+       Security security = new Security();
        Home home = new Home();
        home.setHoemnumber(TFhoemnumber.getText());
        home.setOwner(TFownername.getText());
