@@ -1,7 +1,9 @@
 
 package securaty;
 
+import datas.Home;
 import datas.Persion;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
@@ -56,8 +58,35 @@ Cipher ecipher;
             decryptedPersion.setSex(decrypt(persion.getSex(),secretKey));
             decryptedPersion.setAddress(decrypt(persion.getAddress(),secretKey));
             decryptedPersion.setTpnum(decrypt(persion.getTpnum(),secretKey));
+	    decryptedPersion.setBirthday(decrypt(persion.getBirthday(),secretKey));
             
             return decryptedPersion;
+        }
+
+        public Home encryptPersion(Home home,String secretKey) throws Exception{
+            
+            Home encryptedHome = new Home();
+            
+            encryptedHome.setHoemnumber(encrypt(home.getHoemnumber(),secretKey));
+            encryptedHome.setOwner(encrypt(home.getOwner(),secretKey));
+            encryptedHome.setAddress(encrypt(home.getAddress(),secretKey));
+            encryptedHome.setTpnumber(encrypt(home.getTpnumber(),secretKey));
+            encryptedHome.setNumofmembers(home.getNumofmembers());
+            
+            return encryptedHome;
+        }
+
+       public Home decryptHome(Home home,String secretKey) throws Exception{
+            
+            Home decryptedHome = new Home();
+            
+            decryptedHome.setHoemnumber(decrypt(home.getHoemnumber(),secretKey));
+            decryptedHome.setOwner(decrypt(home.setOwner(),secretKey));
+            decryptedHome.setAddress(decrypt(home.setAddress(),secretKey));
+            decryptedHome.setTpnumber(decrypt(home.getAddress(),secretKey));
+            decryptedHome.setNumofmembers(home.getTpnum());
+            
+            return decryptedHome;
         }
         
 
