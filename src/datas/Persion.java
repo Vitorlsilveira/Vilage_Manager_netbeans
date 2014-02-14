@@ -1,7 +1,7 @@
-
 package datas;
 
 public class Persion {
+
     private String id;
     private String name;
     private String sex;
@@ -9,22 +9,21 @@ public class Persion {
     private String tpnum;
     private String birthday;
 
-    public Persion(String id,String name,String sex,String address,String tpnum,String birthday){
-        this.id=id;
-        this.name=name;
-        this.sex=sex;
-        this.address=address;
-        this.tpnum=tpnum;
-	this.birthday = birthday;
+    public Persion(String id, String name, String sex, String address, String tpnum, String birthday) {
+        this.id = id;
+        this.name = name;
+        this.sex = sex;
+        this.address = address;
+        this.tpnum = tpnum;
+        this.birthday = birthday;
     }
-    
-    public Persion(){}
-    
-    
+
+    public Persion() {
+    }
+
     public String getBirthday() {
         return birthday;
     }
-
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
@@ -33,7 +32,6 @@ public class Persion {
     public String getId() {
         return id;
     }
-
 
     public void setId(String id) {
         this.id = id;
@@ -70,6 +68,5 @@ public class Persion {
     public void setTpnum(String tpnum) {
         this.tpnum = tpnum;
     }
-    
-    
+
 }

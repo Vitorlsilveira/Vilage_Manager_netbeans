@@ -1,25 +1,25 @@
-
 package datas;
 
 public class Home {
+
     private String hoemnumber;
     private String owner;
     private String address;
     private String tpnumber;
     private int numofmembers;
 
-    public Home(){
-       
+    public Home() {
+
     }
-    
-    public Home(String hoemnumber, String owner, String address, String tpnumber, int numofmembers ){
+
+    public Home(String hoemnumber, String owner, String address, String tpnumber, int numofmembers) {
         this.hoemnumber = hoemnumber;
         this.owner = owner;
         this.address = address;
         this.tpnumber = tpnumber;
         this.numofmembers = numofmembers;
     }
-    
+
     public void setHoemnumber(String hoemnumber) {
         this.hoemnumber = hoemnumber;
     }
@@ -59,6 +59,5 @@ public class Home {
     public int getNumofmembers() {
         return numofmembers;
     }
-    
-    
+
 }

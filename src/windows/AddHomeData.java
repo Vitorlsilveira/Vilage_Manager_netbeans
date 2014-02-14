@@ -1,4 +1,3 @@
-
 package windows;
 
 import DBConections.DBCon;
@@ -127,17 +126,17 @@ public class AddHomeData extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-       Security security = new Security();
-       Home home = new Home();
-       home.setHoemnumber(TFhoemnumber.getText());
-       home.setOwner(TFownername.getText());
-       home.setAddress(TFaddress.getText());
-       home.setTpnumber(TFtpnum.getText());
-       String str = TFmembers.getText();
-       int num = Integer.parseInt(str);
-       home.setNumofmembers(num);
-       
-       DBCon db = new DBCon();
+        Security security = new Security();
+        Home home = new Home();
+        home.setHoemnumber(TFhoemnumber.getText());
+        home.setOwner(TFownername.getText());
+        home.setAddress(TFaddress.getText());
+        home.setTpnumber(TFtpnum.getText());
+        String str = TFmembers.getText();
+        int num = Integer.parseInt(str);
+        home.setNumofmembers(num);
+
+        DBCon db = new DBCon();
         try {
             db.addHomeToDatabase(home);
             JOptionPane.showMessageDialog(this, "Added home succesfully");
@@ -149,7 +148,7 @@ public class AddHomeData extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
-       
+
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

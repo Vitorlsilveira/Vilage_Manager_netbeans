@@ -1,4 +1,3 @@
-
 package windows;
 
 public class Selection extends javax.swing.JFrame {
@@ -127,21 +126,21 @@ public class Selection extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            if (jRadioButton3.isSelected()){
-                AddPersionData addpersiondata = new AddPersionData();
-                this.dispose();
-                addpersiondata.setVisible(true);
-                
-            } else if(jRadioButton4.isSelected()){
-                SerchPersion serchpersion = new SerchPersion();
-                serchpersion.setVisible(true);
-                this.dispose();
-                
-            } else if(rdoaddahome.isSelected()){
-                AddHomeData addhomedata = new AddHomeData();
-                addhomedata.setVisible(true);
-                this.dispose();
-            }
+        if (jRadioButton3.isSelected()) {
+            AddPersionData addpersiondata = new AddPersionData();
+            this.dispose();
+            addpersiondata.setVisible(true);
+
+        } else if (jRadioButton4.isSelected()) {
+            SerchPersion serchpersion = new SerchPersion();
+            serchpersion.setVisible(true);
+            this.dispose();
+
+        } else if (rdoaddahome.isSelected()) {
+            AddHomeData addhomedata = new AddHomeData();
+            addhomedata.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed

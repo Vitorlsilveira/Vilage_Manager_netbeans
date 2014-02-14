@@ -1,12 +1,12 @@
 package windows;
 
 public class Welcome extends javax.swing.JFrame {
-        
+
     public Welcome() {
         initComponents();
     }
-    
-   private static Welcome welcome = new Welcome();
+
+    private static Welcome welcome = new Welcome();
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -100,13 +100,13 @@ public class Welcome extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (jTextField1.getText().equals("username") && jTextField2.getText().equals("password")){
+        if (jTextField1.getText().equals("username") && jTextField2.getText().equals("password")) {
             Selection select = new Selection();
             welcome.setVisible(false);
             select.setVisible(true);
             welcome.dispose();
-            
-        }else{
+
+        } else {
             jLabel4.setText("Error in User Name or Password");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -140,7 +140,7 @@ public class Welcome extends javax.swing.JFrame {
             }
         });
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
