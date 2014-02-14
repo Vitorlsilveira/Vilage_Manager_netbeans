@@ -15,7 +15,7 @@ public class Security {
     //private Document document;
     Cipher ecipher;
     Cipher dcipher;
-    private String secretKey = "ezeon8547";
+    private final String secretKey = "ezeon8547";
 
     public Security() {
 
