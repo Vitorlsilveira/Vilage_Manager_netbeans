@@ -145,7 +145,7 @@ public class Selection extends javax.swing.JFrame {
             AddHomeData addhomedata = new AddHomeData();
             addhomedata.setVisible(true);
             this.dispose();
-        }else if(rdoserchahome.isSelected()){
+        } else if (rdoserchahome.isSelected()) {
             SerchHome serchhome = new SerchHome();
             serchhome.setVisible(true);
             this.dispose();

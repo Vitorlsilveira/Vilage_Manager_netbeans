@@ -2,11 +2,8 @@ package windows.home;
 
 import DBConections.DBCon;
 import datas.Home;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import windows.Selection;
 
 public class SearchByHN extends javax.swing.JFrame {
 
@@ -133,7 +130,7 @@ public class SearchByHN extends javax.swing.JFrame {
         DBCon db = new DBCon();
         try {
             home = db.searchHome(TFhoemnumber.getText());
-            System.out.println("Home Number : "+home.getHoemnumber());
+            System.out.println("Home Number : " + home.getHoemnumber());
         } catch (Exception ex) {
             Logger.getLogger(SearchByHN.class.getName()).log(Level.SEVERE, null, ex);
         }

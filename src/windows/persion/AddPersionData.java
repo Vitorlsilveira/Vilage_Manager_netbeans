@@ -143,9 +143,8 @@ public class AddPersionData extends javax.swing.JFrame {
             persion.setBirthday(logic.getBirthDateUsingId(TFid.getText()));
 
           //  Persion encryptedPersion = new Persion();
-          //  encryptedPersion = security.encryptPersion(persion, "ezeon8547");
-         //   persion.setAddress(encryptedPersion.getId());
-
+            //  encryptedPersion = security.encryptPersion(persion, "ezeon8547");
+            //   persion.setAddress(encryptedPersion.getId());
             DBCon db = new DBCon();
             try {
                 db.addPersionToDatabase(persion);

@@ -2,7 +2,6 @@ package windows.persion;
 
 import DBConections.DBCon;
 import datas.Persion;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import windows.Selection;
@@ -185,11 +184,11 @@ public class SearchByID extends javax.swing.JFrame {
             Logger.getLogger(SearchByID.class.getName()).log(Level.SEVERE, null, ex);
         }
         TFID.setText(person.getId());
-        System.out.println("ID...."+person.getId());
-        
+        System.out.println("ID...." + person.getId());
+
         TFName.setText(person.getName());
-        System.out.println("Name...."+person.getName());
-        
+        System.out.println("Name...." + person.getName());
+
         TFSex.setText(person.getSex());
         TFAddress.setText(person.getAddress());
         TFTPNumber.setText(person.getTpnum());

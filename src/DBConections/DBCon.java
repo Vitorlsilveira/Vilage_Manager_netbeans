@@ -99,21 +99,21 @@ public class DBCon {
     public Home searchHome(String num) throws Exception {
         Home decryptedHome = new Home();
         String encryptedhomeid = security.encrypt(num);
-        System.out.println("encryptedhomeid : "+encryptedhomeid);
+        System.out.println("encryptedhomeid : " + encryptedhomeid);
         createConnecction();
         String sql = "select * from home where Home_Number='" + encryptedhomeid + "'";
-        System.out.println("sql : "+sql);
+        System.out.println("sql : " + sql);
         Connection connection = con;
         java.sql.Statement stm = (java.sql.Statement) connection.createStatement();
         ResultSet res = stm.executeQuery(sql);
         if (res.next()) {
             Home home = new Home(res.getString("Home_Number"), res.getString("Owner"), res.getString("Address"), res.getString("TP_Number"), res.getInt("NumberOfMembers"));
-            System.out.println("Home number : "+home.getHoemnumber());
+            System.out.println("Home number : " + home.getHoemnumber());
             try {
                 decryptedHome = security.decryptHome(home);
-                System.out.println("Encrypted address "+home.getAddress());
-                System.out.println("Encrypted TP "+home.getTpnumber());
-                System.out.println("decryptedHome TP : "+decryptedHome.getTpnumber());
+                System.out.println("Encrypted address " + home.getAddress());
+                System.out.println("Encrypted TP " + home.getTpnumber());
+                System.out.println("decryptedHome TP : " + decryptedHome.getTpnumber());
             } catch (Exception ex) {
                 Logger.getLogger(DBCon.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -123,11 +123,11 @@ public class DBCon {
 
     public List<Home> getSearchHome(String name) throws Exception {
         String encryptName = security.encrypt(name);
-        System.out.println("encryptName : "+encryptName);
+        System.out.println("encryptName : " + encryptName);
         createConnecction();
         java.sql.Statement stm = con.createStatement();
         String sql = "Select * From home where Owner='" + encryptName + "'";
-        System.out.println("sql : "+sql);
+        System.out.println("sql : " + sql);
         ResultSet res = stm.executeQuery(sql);
         List<Home> customerList = new ArrayList<>();
         while (res.next()) {
