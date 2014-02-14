@@ -138,4 +138,31 @@ public class DBCon {
         return customerList;
     }
 
+    public void updatePersionData(Persion persion) throws Exception {
+        System.out.println("Entered to updatePersionData");
+
+        Persion encryptedpersion = null;
+        try {
+            encryptedpersion = security.encryptPersion(persion);
+        } catch (Exception ex) {
+            Logger.getLogger(DBCon.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        createConnecction();
+
+        String sql = "UPDATE persion SET Name= '" + encryptedpersion.getName() + "',"
+                + " ID='" + encryptedpersion.getId() + "', Address='" + encryptedpersion.getAddress() + "', "
+                + "TPNum='" + encryptedpersion.getTpnum() + "' WHERE ID='" + encryptedpersion.getId() + "';";
+
+        System.out.println("sql : " + sql);
+
+        Statement st = (Statement) con.createStatement();
+
+        st.executeUpdate(sql);
+
+        System.out.println("Done ...");
+
+        con.close();
+    }
+
 }
