@@ -1,9 +1,11 @@
-package windows;
+package windows.persion;
 
 import DBConections.DBCon;
 import datas.Persion;
 import java.sql.SQLException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+import windows.Selection;
 
 public class SearchByID extends javax.swing.JFrame {
 
@@ -178,19 +180,20 @@ public class SearchByID extends javax.swing.JFrame {
 
         Persion person = null;
         try {
-
             person = new DBCon().searchPersons(TFID.getText());
-            TFID.setText(person.getId());
-            TFName.setText(person.getName());
-            TFSex.setText(person.getSex());
-            TFAddress.setText(person.getAddress());
-            TFTPNumber.setText(person.getTpnum());
-            TFbirthdate.setText(person.getBirthday());
-        } catch (SQLException ex) {
-            System.exit(0);
-        } catch (ClassNotFoundException ex) {
-            // System.exit(0);
+        } catch (Exception ex) {
+            Logger.getLogger(SearchByID.class.getName()).log(Level.SEVERE, null, ex);
         }
+        TFID.setText(person.getId());
+        System.out.println("ID...."+person.getId());
+        
+        TFName.setText(person.getName());
+        System.out.println("Name...."+person.getName());
+        
+        TFSex.setText(person.getSex());
+        TFAddress.setText(person.getAddress());
+        TFTPNumber.setText(person.getTpnum());
+        TFbirthdate.setText(person.getBirthday());
 
     }//GEN-LAST:event_bSearchActionPerformed
 

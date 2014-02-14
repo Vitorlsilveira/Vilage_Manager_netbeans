@@ -1,4 +1,4 @@
-package windows;
+package windows.persion;
 
 import datas.Persion;
 import DBConections.DBCon;
@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import logics.Logics;
 import securaty.Security;
+import windows.Selection;
 
 public class AddPersionData extends javax.swing.JFrame {
 

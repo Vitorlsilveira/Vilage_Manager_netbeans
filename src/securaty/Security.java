@@ -57,7 +57,7 @@ public class Security {
         return decryptedPersion;
     }
 
-    public Home encryptPersion(Home home) throws Exception {
+    public Home encryptHome(Home home) throws Exception {
 
         Home encryptedHome = new Home();
 
@@ -77,7 +77,7 @@ public class Security {
         decryptedHome.setHoemnumber(decrypt(home.getHoemnumber()));
         decryptedHome.setOwner(decrypt(home.getOwner()));
         decryptedHome.setAddress(decrypt(home.getAddress()));
-        decryptedHome.setTpnumber(decrypt(home.getAddress()));
+        decryptedHome.setTpnumber(decrypt(home.getTpnumber()));
         decryptedHome.setNumofmembers(home.getNumofmembers());
 
         return decryptedHome;

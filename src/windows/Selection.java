@@ -1,5 +1,10 @@
 package windows;
 
+import windows.home.AddHomeData;
+import windows.home.SerchHome;
+import windows.persion.SerchPersion;
+import windows.persion.AddPersionData;
+
 public class Selection extends javax.swing.JFrame {
 
     public Selection() {
@@ -139,6 +144,10 @@ public class Selection extends javax.swing.JFrame {
         } else if (rdoaddahome.isSelected()) {
             AddHomeData addhomedata = new AddHomeData();
             addhomedata.setVisible(true);
+            this.dispose();
+        }else if(rdoserchahome.isSelected()){
+            SerchHome serchhome = new SerchHome();
+            serchhome.setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed

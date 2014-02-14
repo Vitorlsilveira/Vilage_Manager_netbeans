@@ -1,10 +1,11 @@
-package windows;
+package windows.home;
 
 import DBConections.DBCon;
 import datas.Home;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import securaty.Security;
+import windows.Selection;
 
 public class AddHomeData extends javax.swing.JFrame {
 
