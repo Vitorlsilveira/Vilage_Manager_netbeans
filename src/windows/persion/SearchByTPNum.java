@@ -1,8 +1,6 @@
 package windows.persion;
 
-import windows.home.*;
 import DBConections.DBCon;
-import datas.Home;
 import datas.Persion;
 import java.util.List;
 import java.util.logging.Level;
@@ -15,7 +13,7 @@ public class SearchByTPNum extends javax.swing.JFrame {
     public SearchByTPNum() {
         initComponents();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -150,7 +148,7 @@ public class SearchByTPNum extends javax.swing.JFrame {
         DefaultTableModel dtm = (DefaultTableModel) customerTable.getModel();
         dtm.setRowCount(0);
         for (Persion pers : persionList) {
-            Object rowData[] = {pers.getName(), pers.getId(), pers.getSex(), pers.getAddress(), pers.getTpnum(),pers.getBirthday()};
+            Object rowData[] = {pers.getName(), pers.getId(), pers.getSex(), pers.getAddress(), pers.getTpnum(), pers.getBirthday()};
             dtm.addRow(rowData);
         }
     }//GEN-LAST:event_reloadButtonActionPerformed

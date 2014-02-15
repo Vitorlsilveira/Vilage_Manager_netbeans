@@ -164,7 +164,7 @@ public class DBCon {
 
         con.close();
     }
-    
+
     public List<Persion> getSearchPersion(String tPNum) throws Exception {
         String encryptNum = security.encrypt(tPNum);
         System.out.println("encryptTPNum : " + encryptNum);
@@ -175,13 +175,13 @@ public class DBCon {
         ResultSet res = stm.executeQuery(sql);
         List<Persion> persionList = new ArrayList<>();
         while (res.next()) {
-            Persion pers=new Persion(res.getString("ID"), res.getString("Name"), res.getString("Sex"), res.getString("Address"), res.getString("TPNum"), res.getString("Birth_Date"));
+            Persion pers = new Persion(res.getString("ID"), res.getString("Name"), res.getString("Sex"), res.getString("Address"), res.getString("TPNum"), res.getString("Birth_Date"));
             Persion persion = security.decryptPersion(pers);
             persionList.add(persion);
         }
         return persionList;
     }
-    
+
     public List<Persion> getSearchPersionByName(String name) throws Exception {
         String encrypname = security.encrypt(name);
         System.out.println("encryptName : " + encrypname);
@@ -192,7 +192,7 @@ public class DBCon {
         ResultSet res = stm.executeQuery(sql);
         List<Persion> persionList = new ArrayList<>();
         while (res.next()) {
-            Persion pers=new Persion(res.getString("ID"), res.getString("Name"), res.getString("Sex"), res.getString("Address"), res.getString("TPNum"), res.getString("Birth_Date"));
+            Persion pers = new Persion(res.getString("ID"), res.getString("Name"), res.getString("Sex"), res.getString("Address"), res.getString("TPNum"), res.getString("Birth_Date"));
             Persion persion = security.decryptPersion(pers);
             persionList.add(persion);
         }
