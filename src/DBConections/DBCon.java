@@ -199,4 +199,26 @@ public class DBCon {
         return persionList;
     }
 
+    public void editHomeDetails(Home home) throws Exception {
+        Home encryptedhome = new Home();
+        try {
+            encryptedhome = security.encryptHome(home);
+        } catch (Exception ex) {
+            Logger.getLogger(DBCon.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        createConnecction();
+
+        String sql = "UPDATE home SET Home_Number= '" + encryptedhome.getHoemnumber() + "',"
+                + " Owner='" + encryptedhome.getOwner() + "', Address='" + encryptedhome.getAddress() + "', "
+                + "TP_Number='" + encryptedhome.getTpnumber() + "', NumberOfMembers=" + encryptedhome.getNumofmembers() + ""
+                + " WHERE Home_Number='" + encryptedhome.getHoemnumber() + "';";
+
+        Statement st = (Statement) con.createStatement();
+
+        st.executeUpdate(sql);
+
+        con.close();
+    }
+
 }
