@@ -159,7 +159,7 @@ public class SearchByTPNum extends javax.swing.JFrame {
         DefaultTableModel dtm = (DefaultTableModel) customerTable.getModel();
         dtm.setRowCount(0);
         for (Persion pers : persionList) {
-            Object rowData[] = {pers.getName(), pers.getId(), pers.getSex(), pers.getAddress(), pers.getTpnum(), pers.getBirthday()};
+            Object rowData[] = {pers.getName(), pers.getId(), pers.getSex(), pers.getAddress(), pers.getTpnum(), pers.getBirthday(),pers.getHomeNumber()};
             dtm.addRow(rowData);
         }
     }//GEN-LAST:event_reloadButtonActionPerformed

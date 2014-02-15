@@ -39,6 +39,7 @@ public class Security {
         encryptedPersion.setAddress(encrypt(persion.getAddress()));
         encryptedPersion.setTpnum(encrypt(persion.getTpnum()));
         encryptedPersion.setBirthday(encrypt(persion.getBirthday()));
+        encryptedPersion.setHomeNumber(encrypt(persion.getHomeNumber()));
 
         return encryptedPersion;
     }
@@ -53,6 +54,7 @@ public class Security {
         decryptedPersion.setAddress(decrypt(persion.getAddress()));
         decryptedPersion.setTpnum(decrypt(persion.getTpnum()));
         decryptedPersion.setBirthday(decrypt(persion.getBirthday()));
+        decryptedPersion.setHomeNumber(decrypt(persion.getHomeNumber()));
 
         return decryptedPersion;
     }

@@ -109,8 +109,9 @@ public class SerchPersion extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        SearchByTPNum serchbytpnum = new SearchByTPNum();
         this.setVisible(false);
-        new SearchByTPNum().setVisible(true);
+        serchbytpnum.setVisible(true);
 
     }//GEN-LAST:event_jButton3ActionPerformed
 

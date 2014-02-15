@@ -8,18 +8,29 @@ public class Persion {
     private String address;
     private String tpnum;
     private String birthday;
+    private String homeNumber;
 
-    public Persion(String id, String name, String sex, String address, String tpnum, String birthday) {
+    public Persion(String id, String name, String sex, String address, String tpnum, String birthday, String homeNumber) {
         this.id = id;
         this.name = name;
         this.sex = sex;
         this.address = address;
         this.tpnum = tpnum;
         this.birthday = birthday;
+        this.homeNumber = homeNumber;
     }
 
     public Persion() {
     }
+
+    public String getHomeNumber() {
+        return homeNumber;
+    }
+
+    public void setHomeNumber(String homeNumber) {
+        this.homeNumber = homeNumber;
+    }
+    
 
     public String getBirthday() {
         return birthday;

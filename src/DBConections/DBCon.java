@@ -41,12 +41,15 @@ public class DBCon {
             createConnecction();
 
             String sql = "INSERT INTO persion VALUES('" + encryptedPersion.getName() + "','" + encryptedPersion.getId() + "','" + encryptedPersion.getSex() + "','"
-                    + "" + encryptedPersion.getAddress() + "','" + encryptedPersion.getTpnum() + "','" + encryptedPersion.getBirthday() + "');";
+                    + "" + encryptedPersion.getAddress() + "','" + encryptedPersion.getTpnum() + "',"
+                    + "'" + encryptedPersion.getBirthday() + "','" + encryptedPersion.getHomeNumber() +"');";
 
             System.out.println("sql " + sql);
 
             Statement st = (Statement) con.createStatement();
-
+            
+            System.out.println("Created a Statement");
+            
             st.executeUpdate(sql);
             con.close();
         } catch (Exception ex) {
@@ -82,7 +85,7 @@ public class DBCon {
             java.sql.Statement stm = (java.sql.Statement) connection.createStatement();
             ResultSet res = stm.executeQuery(sql);
             if (res.next()) {
-                prsn = new Persion(res.getString("ID"), res.getString("Name"), res.getString("Sex"), res.getString("Address"), res.getString("TPNum"), res.getString("Birth_date"));
+                prsn = new Persion(res.getString("ID"), res.getString("Name"), res.getString("Sex"), res.getString("Address"), res.getString("TPNum"), res.getString("Birth_date"),res.getString("Home_Number"));
                 try {
                     decryptedPersion = security.decryptPersion(prsn);
                 } catch (Exception ex) {
@@ -175,7 +178,7 @@ public class DBCon {
         ResultSet res = stm.executeQuery(sql);
         List<Persion> persionList = new ArrayList<>();
         while (res.next()) {
-            Persion pers = new Persion(res.getString("ID"), res.getString("Name"), res.getString("Sex"), res.getString("Address"), res.getString("TPNum"), res.getString("Birth_Date"));
+            Persion pers = new Persion(res.getString("ID"), res.getString("Name"), res.getString("Sex"), res.getString("Address"), res.getString("TPNum"), res.getString("Birth_Date"),res.getString("Home_Number"));
             Persion persion = security.decryptPersion(pers);
             persionList.add(persion);
         }
@@ -192,7 +195,7 @@ public class DBCon {
         ResultSet res = stm.executeQuery(sql);
         List<Persion> persionList = new ArrayList<>();
         while (res.next()) {
-            Persion pers = new Persion(res.getString("ID"), res.getString("Name"), res.getString("Sex"), res.getString("Address"), res.getString("TPNum"), res.getString("Birth_Date"));
+            Persion pers = new Persion(res.getString("ID"), res.getString("Name"), res.getString("Sex"), res.getString("Address"), res.getString("TPNum"), res.getString("Birth_Date"),res.getString("Home_Number"));
             Persion persion = security.decryptPersion(pers);
             persionList.add(persion);
         }
