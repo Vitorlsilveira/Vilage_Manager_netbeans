@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/kasun/NetBeansProjects/VilageDataManeger/src/securaty/Security.java</file>
-            <file>file:/home/kasun/NetBeansProjects/VilageDataManeger/src/DBConections/DBCon.java</file>
+            <file>file:/home/kasun/Desktop/new/Vilage_Manager_netbeans/src/vilagedatamaneger/VilageDataManeger.java</file>
+            <file>file:/home/kasun/Desktop/new/Vilage_Manager_netbeans/src/windows/persion/AddPersionData.java</file>
+            <file>file:/home/kasun/Desktop/new/Vilage_Manager_netbeans/src/windows/persion/SearchByID.java</file>
+            <file>file:/home/kasun/Desktop/new/Vilage_Manager_netbeans/src/DBConections/DBCon.java</file>
         </group>
     </open-files>
 </project-private>
