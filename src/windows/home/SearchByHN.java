@@ -188,6 +188,9 @@ public class SearchByHN extends javax.swing.JFrame {
             home.setNumofmembers(num);
 
             db.editHomeDetails(home);
+
+	    JOptionPane.showMessageDialog(this, "Updated ...");
+
         } catch (Exception ex) {
             Logger.getLogger(SearchByHN.class.getName()).log(Level.SEVERE, null, ex);
         }
