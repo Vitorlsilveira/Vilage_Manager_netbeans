@@ -4,6 +4,7 @@ import DBConections.DBCon;
 import datas.Home;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class SearchByHN extends javax.swing.JFrame {
 
