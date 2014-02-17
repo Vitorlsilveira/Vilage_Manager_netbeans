@@ -1,4 +1,4 @@
-Vilage_Manager_netbeans
+Vilage Data Manager
 =======================
 
 This is a Simple Desktop application for Village Management. java and netbeans ID were used here. Now project has started and still developing. First use case is to add a persion data into database. Database name is vilage it has two table named person and home. 
