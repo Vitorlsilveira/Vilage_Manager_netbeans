@@ -21,12 +21,10 @@ public class Security {
 
     }
 
-    // 8-byte Salt
     byte[] salt = {
         (byte) 0xA9, (byte) 0x9B, (byte) 0xC8, (byte) 0x32,
         (byte) 0x56, (byte) 0x35, (byte) 0xE3, (byte) 0x03
     };
-    // Iteration count
     int iterationCount = 19;
 
     public Persion encryptPersion(Persion persion) throws Exception {
@@ -86,13 +84,12 @@ public class Security {
     }
 
     public String encrypt(String plainText) throws Exception {
-        //Key generation for enc and desc
+
         KeySpec keySpec = new PBEKeySpec(secretKey.toCharArray(), salt, iterationCount);
         SecretKey key = SecretKeyFactory.getInstance("PBEWithMD5AndDES").generateSecret(keySpec);
-        // Prepare the parameter to the ciphers
+
         AlgorithmParameterSpec paramSpec = new PBEParameterSpec(salt, iterationCount);
 
-        //Enc process
         ecipher = Cipher.getInstance(key.getAlgorithm());
         ecipher.init(Cipher.ENCRYPT_MODE, key, paramSpec);
         String charSet = "UTF-8";
@@ -104,12 +101,12 @@ public class Security {
     }
 
     public String decrypt(String encryptedText) throws Exception {
-        //Key generation for enc and desc
+
         KeySpec keySpec = new PBEKeySpec(secretKey.toCharArray(), salt, iterationCount);
         SecretKey key = SecretKeyFactory.getInstance("PBEWithMD5AndDES").generateSecret(keySpec);
-        // Prepare the parameter to the ciphers
+
         AlgorithmParameterSpec paramSpec = new PBEParameterSpec(salt, iterationCount);
-        //Decryption process; same key will be used for decr
+
         dcipher = Cipher.getInstance(key.getAlgorithm());
         dcipher.init(Cipher.DECRYPT_MODE, key, paramSpec);
         byte[] enc = new sun.misc.BASE64Decoder().decodeBuffer(encryptedText);

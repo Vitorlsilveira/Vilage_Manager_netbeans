@@ -143,27 +143,36 @@ public class AddHomeData extends javax.swing.JFrame {
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         Security security = new Security();
         Home home = new Home();
-        home.setHoemnumber(TFhoemnumber.getText());
-        home.setOwner(TFownername.getText());
-        home.setAddress(TFaddress.getText());
-        home.setTpnumber(TFtpnum.getText());
-        String str = TFmembers.getText();
-        int num = Integer.parseInt(str);
-        home.setNumofmembers(num);
 
-        DBCon db = new DBCon();
-        try {
-            db.addHomeToDatabase(home);
-            JOptionPane.showMessageDialog(this, "Added home succesfully");
-            TFhoemnumber.setText("");
-            TFownername.setText("");
-            TFaddress.setText("");
-            TFtpnum.setText("");
-            TFmembers.setText("");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
+        if (TFhoemnumber.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Home number can not be null");
+        } else if (TFownername.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please add owner name");
+        } else if (TFaddress.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter the address");
+        } else if (TFmembers.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter the number of members");
+        } else {
+            home.setHoemnumber(TFhoemnumber.getText());
+            home.setOwner(TFownername.getText());
+            home.setAddress(TFaddress.getText());
+            home.setTpnumber(TFtpnum.getText());
+            String str = TFmembers.getText();
+            int num = Integer.parseInt(str);
+            home.setNumofmembers(num);
+            DBCon db = new DBCon();
+            try {
+                db.addHomeToDatabase(home);
+                JOptionPane.showMessageDialog(this, "Added home succesfully");
+                TFhoemnumber.setText("");
+                TFownername.setText("");
+                TFaddress.setText("");
+                TFtpnum.setText("");
+                TFmembers.setText("");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+            }
         }
-
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

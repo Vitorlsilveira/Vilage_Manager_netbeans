@@ -35,6 +35,7 @@ public class AddPersionData extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         TFhomenumber = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,43 +77,47 @@ public class AddPersionData extends javax.swing.JFrame {
 
         jLabel7.setText("Home Number");
 
+        jButton1.setText("Exit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(88, 88, 88)
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(106, 106, 106))
             .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(jLabel3)
-                        .addGap(35, 35, 35)
-                        .addComponent(jLabel6))
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(77, 77, 77)
+                        .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(45, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(86, 86, 86)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(TFaddress, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TFhomenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TFtp, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TFid, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TFname, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                            .addComponent(TFid, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TFname, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TFaddress, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TFtp, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TFhomenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(160, 160, 160)
+                .addComponent(jLabel3)
+                .addGap(35, 35, 35)
+                .addComponent(jLabel6)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -130,10 +135,11 @@ public class AddPersionData extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TFid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(TFaddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
@@ -149,7 +155,8 @@ public class AddPersionData extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSubmit)
-                            .addComponent(btnBack))
+                            .addComponent(btnBack)
+                            .addComponent(jButton1))
                         .addContainerGap())))
         );
 
@@ -159,57 +166,46 @@ public class AddPersionData extends javax.swing.JFrame {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         try {
-            
+
             Logics logic = new Logics();
             Persion persion = new Persion();
 
-            System.out.println("Created a empty persion");
-            
             persion.setName(TFname.getText());
-            System.out.println(TFname.getText());
-
             persion.setId(TFid.getText());
-            System.out.println("ID : "+TFid.getText());
+            if (TFid.getText().isEmpty() && (persion.getId()).length() != 10) {
+                JOptionPane.showMessageDialog(this, "ID number should contain 10 charactor");
+            } else {
+                persion.setSex(logic.getSexFromId(TFid.getText()));
+                persion.setAddress(TFaddress.getText());
+                persion.setTpnum(TFtp.getText());
+                persion.setBirthday(logic.getBirthDateUsingId(TFid.getText()));
+                persion.setHomeNumber(TFhomenumber.getText());
 
-            persion.setSex(logic.getSexFromId(TFid.getText()));
-            System.out.println("sex : "+logic.getSexFromId(TFid.getText()));
-            
-            persion.setAddress(TFaddress.getText());
-            System.out.println("address : "+TFaddress.getText());
+                if (persion.getName().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Name can not be empty");
+                } else if (persion.getAddress().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Please Enter the address");
+                } else if (persion.getHomeNumber().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Please Enter the Home Number");
+                } else {
+                    DBCon db = new DBCon();
+                    try {
 
-            persion.setTpnum(TFtp.getText());
-            System.out.println("tp : "+TFtp.getText());
-            
-            persion.setBirthday(logic.getBirthDateUsingId(TFid.getText()));
-            System.out.println("birth day : "+logic.getBirthDateUsingId(TFid.getText()));
-            
-            persion.setHomeNumber(TFhomenumber.getText());
-           // System.out.println("ID : "+TFid.getText());
-            
-            System.out.println(" TFhomenumber "+TFhomenumber.getText());
-            
-            System.out.println("persions home number : "+persion.getHomeNumber());
-            
-            DBCon db = new DBCon();
-            try {
-                
-                System.out.println("Entered to try catch in addpersion");
-                
-                db.addPersionToDatabase(persion);
-                System.out.println("persion sent to DB class");
-                
-                JOptionPane.showMessageDialog(this, "Added");
-                TFname.setText("");
-                TFid.setText("");
-                TFaddress.setText("");
-                TFtp.setText("");
-                TFhomenumber.setText("");
-                
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage());
+                        db.addPersionToDatabase(persion);
+                        JOptionPane.showMessageDialog(this, "Added");
+                        TFname.setText("");
+                        TFid.setText("");
+                        TFaddress.setText("");
+                        TFtp.setText("");
+                        TFhomenumber.setText("");
+
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(this, ex.getMessage());
+                    }
+                }
             }
         } catch (HeadlessException ex) {
-            Logger.getLogger(AddPersionData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
@@ -227,6 +223,10 @@ public class AddPersionData extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TFaddressActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TFaddress;
@@ -236,6 +236,7 @@ public class AddPersionData extends javax.swing.JFrame {
     private javax.swing.JTextField TFtp;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSubmit;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -177,22 +177,28 @@ public class SearchByHN extends javax.swing.JFrame {
     private void btnEditingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditingActionPerformed
         try {
             DBCon db = new DBCon();
-
             Home home = new Home();
 
-            home.setHoemnumber(TFhoemnumber.getText());
-            home.setOwner(TFownername.getText());
-            home.setAddress(TFaddress.getText());
-            home.setTpnumber(TFtpnum.getText());
-
-            String str = TFmembers.getText();
-            int num = Integer.parseInt(str);
-            home.setNumofmembers(num);
-
-            db.editHomeDetails(home);
-
-	    JOptionPane.showMessageDialog(this, "Updated ...");
-
+            if (TFhoemnumber.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Home number can not be null");
+            } else if (TFownername.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please add owner name");
+            } else if (TFaddress.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please enter the address");
+            } else if (TFmembers.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Enter the number of members");
+            } else {
+                home.setHoemnumber(TFhoemnumber.getText());
+                home.setOwner(TFownername.getText());
+                home.setAddress(TFaddress.getText());
+                home.setTpnumber(TFtpnum.getText());
+                String str = TFmembers.getText();
+                int num = Integer.parseInt(str);
+                
+                home.setNumofmembers(num);
+                db.editHomeDetails(home);
+                JOptionPane.showMessageDialog(this, "Updated ...");
+            }
         } catch (Exception ex) {
             Logger.getLogger(SearchByHN.class.getName()).log(Level.SEVERE, null, ex);
         }

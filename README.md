@@ -5,13 +5,7 @@ This is a Simple Desktop application for Village Management. java and netbeans I
 
 Setup the project
 
-My Project Directory
-
 Before setup the project, it is good to study little bit about the project and how to make a team project using git hub. So first install git in your machine.
-
-Setup git for Linux
-
-Setup git for Windows
 
 If you have installed git, You can type
 git clone https://github.com/kasunsk/Vilage_Manager_netbeans.git in terminal or cmd.

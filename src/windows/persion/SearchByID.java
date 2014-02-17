@@ -252,30 +252,34 @@ public class SearchByID extends javax.swing.JFrame {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         try {
-            System.out.println("Entered to try");
-
             DBCon db = new DBCon();
             Persion persion = new Persion();
 
             persion.setId(TFID.getText());
-            persion.setName(TFName.getText());
-            persion.setSex(TFSex.getText());
-            persion.setBirthday(TFbirthdate.getText());
-            persion.setAddress(TFAddress.getText());
-            persion.setTpnum(TFTPNumber.getText());
-            persion.setHomeNumber(TFhomeNumber.getText());
+            if (TFID.getText().isEmpty() && (persion.getId()).length() != 10) {
+                JOptionPane.showMessageDialog(this, "ID number should contain 10 charactor");
+            } else {
+                persion.setName(TFName.getText());
+                persion.setSex(TFSex.getText());
+                persion.setBirthday(TFbirthdate.getText());
+                persion.setAddress(TFAddress.getText());
+                persion.setTpnum(TFTPNumber.getText());
+                persion.setHomeNumber(TFhomeNumber.getText());
 
-            System.out.println("Create the persion");
-
-            db.updatePersionData(persion);
-
-            JOptionPane.showMessageDialog(this, "Updated ...");
-
+                if (persion.getName().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Name can not be empty");
+                } else if (persion.getAddress().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Please Enter the address");
+                } else if (persion.getHomeNumber().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Please Enter the Home Number");
+                } else {
+                    db.updatePersionData(persion);
+                    JOptionPane.showMessageDialog(this, "Updated ...");
+                }
+            }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
-
-
     }//GEN-LAST:event_btnEditActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
