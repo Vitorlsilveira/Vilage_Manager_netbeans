@@ -16,7 +16,7 @@ import securaty.Security;
 
 public class DBCon {
 
-    private Connection con = null;
+    public Connection con = null;
     Security security = new Security();
 
     public DBCon() {
@@ -33,6 +33,10 @@ public class DBCon {
         //return con;
     }
 
+    public void closeConnection() throws SQLException {
+        con.close();
+    }
+
     public void addPersionToDatabase(Persion persion) throws SQLException {
         try {
             Persion encryptedPersion = new Persion();
@@ -42,16 +46,16 @@ public class DBCon {
 
             String sql = "INSERT INTO persion VALUES('" + encryptedPersion.getName() + "','" + encryptedPersion.getId() + "','" + encryptedPersion.getSex() + "','"
                     + "" + encryptedPersion.getAddress() + "','" + encryptedPersion.getTpnum() + "',"
-                    + "'" + encryptedPersion.getBirthday() + "','" + encryptedPersion.getHomeNumber() +"');";
+                    + "'" + encryptedPersion.getBirthday() + "','" + encryptedPersion.getHomeNumber() + "');";
 
             System.out.println("sql " + sql);
 
             Statement st = (Statement) con.createStatement();
-            
+
             System.out.println("Created a Statement");
-            
+
             st.executeUpdate(sql);
-            con.close();
+            closeConnection();
         } catch (Exception ex) {
             Logger.getLogger(DBCon.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -71,7 +75,7 @@ public class DBCon {
         System.out.println("sql " + sql);
         Statement st = (Statement) con.createStatement();
         st.executeUpdate(sql);
-        con.close();
+        closeConnection();
     }
 
     public Persion searchPersons(String id) throws Exception {
@@ -85,15 +89,17 @@ public class DBCon {
             java.sql.Statement stm = (java.sql.Statement) connection.createStatement();
             ResultSet res = stm.executeQuery(sql);
             if (res.next()) {
-                prsn = new Persion(res.getString("ID"), res.getString("Name"), res.getString("Sex"), res.getString("Address"), res.getString("TPNum"), res.getString("Birth_date"),res.getString("Home_Number"));
+                prsn = new Persion(res.getString("ID"), res.getString("Name"), res.getString("Sex"), res.getString("Address"), res.getString("TPNum"), res.getString("Birth_date"), res.getString("Home_Number"));
                 try {
                     decryptedPersion = security.decryptPersion(prsn);
                 } catch (Exception ex) {
-                    Logger.getLogger(DBCon.class.getName()).log(Level.SEVERE, null, ex);
+                    return null;
                 }
             }
+            closeConnection();
         } catch (Exception ex) {
-            Logger.getLogger(DBCon.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(DBCon.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
 
         return decryptedPersion;
@@ -118,9 +124,10 @@ public class DBCon {
                 System.out.println("Encrypted TP " + home.getTpnumber());
                 System.out.println("decryptedHome TP : " + decryptedHome.getTpnumber());
             } catch (Exception ex) {
-                Logger.getLogger(DBCon.class.getName()).log(Level.SEVERE, null, ex);
+                return null;
             }
         }
+        closeConnection();
         return decryptedHome;
     }
 
@@ -138,34 +145,41 @@ public class DBCon {
             Home home = security.decryptHome(hme);
             customerList.add(home);
         }
+        closeConnection();
         return customerList;
     }
 
     public void updatePersionData(Persion persion) throws Exception {
-        System.out.println("Entered to updatePersionData");
-
         Persion encryptedpersion = null;
         try {
             encryptedpersion = security.encryptPersion(persion);
         } catch (Exception ex) {
             Logger.getLogger(DBCon.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         createConnecction();
-
         String sql = "UPDATE persion SET Name= '" + encryptedpersion.getName() + "',"
                 + " ID='" + encryptedpersion.getId() + "', Address='" + encryptedpersion.getAddress() + "', "
                 + "TPNum='" + encryptedpersion.getTpnum() + "' WHERE ID='" + encryptedpersion.getId() + "';";
 
-        System.out.println("sql : " + sql);
-
         Statement st = (Statement) con.createStatement();
-
         st.executeUpdate(sql);
-
         System.out.println("Done ...");
+        closeConnection();
+    }
 
-        con.close();
+    public void deletePersionData(String id) throws Exception {
+        String encryptid = null;
+        try {
+            encryptid = security.encrypt(id);
+            System.out.println("decrypted ID : " + security.decrypt(encryptid));
+        } catch (Exception ex) {
+            Logger.getLogger(DBCon.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        createConnecction();
+        String sql = "DELETE FROM persion WHERE ID='" + encryptid + "';";
+        Statement st = (Statement) con.createStatement();
+        st.executeUpdate(sql);
+        closeConnection();
     }
 
     public List<Persion> getSearchPersion(String tPNum) throws Exception {
@@ -178,10 +192,11 @@ public class DBCon {
         ResultSet res = stm.executeQuery(sql);
         List<Persion> persionList = new ArrayList<>();
         while (res.next()) {
-            Persion pers = new Persion(res.getString("ID"), res.getString("Name"), res.getString("Sex"), res.getString("Address"), res.getString("TPNum"), res.getString("Birth_Date"),res.getString("Home_Number"));
+            Persion pers = new Persion(res.getString("ID"), res.getString("Name"), res.getString("Sex"), res.getString("Address"), res.getString("TPNum"), res.getString("Birth_Date"), res.getString("Home_Number"));
             Persion persion = security.decryptPersion(pers);
             persionList.add(persion);
         }
+        closeConnection();
         return persionList;
     }
 
@@ -195,10 +210,11 @@ public class DBCon {
         ResultSet res = stm.executeQuery(sql);
         List<Persion> persionList = new ArrayList<>();
         while (res.next()) {
-            Persion pers = new Persion(res.getString("ID"), res.getString("Name"), res.getString("Sex"), res.getString("Address"), res.getString("TPNum"), res.getString("Birth_Date"),res.getString("Home_Number"));
+            Persion pers = new Persion(res.getString("ID"), res.getString("Name"), res.getString("Sex"), res.getString("Address"), res.getString("TPNum"), res.getString("Birth_Date"), res.getString("Home_Number"));
             Persion persion = security.decryptPersion(pers);
             persionList.add(persion);
         }
+        closeConnection();
         return persionList;
     }
 
@@ -209,7 +225,6 @@ public class DBCon {
         } catch (Exception ex) {
             Logger.getLogger(DBCon.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         createConnecction();
 
         String sql = "UPDATE home SET Home_Number= '" + encryptedhome.getHoemnumber() + "',"
@@ -221,7 +236,20 @@ public class DBCon {
 
         st.executeUpdate(sql);
 
-        con.close();
+        closeConnection();
     }
 
+    public void delHomedetails(String homeid) throws Exception {
+        String encrypthomeid = null;
+        try {
+            encrypthomeid = security.encrypt(homeid);
+        } catch (Exception ex) {
+            Logger.getLogger(DBCon.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        createConnecction();
+        String sql = "DELETE FROM home WHERE Home_Number='" + encrypthomeid + "';";
+        Statement st = (Statement) con.createStatement();
+        st.executeUpdate(sql);
+        closeConnection();
+    }
 }
