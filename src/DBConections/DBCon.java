@@ -105,6 +105,23 @@ public class DBCon {
         return decryptedPersion;
     }
 
+    public List<Persion> getSearchPersionByHN(String hNum) throws Exception {
+        String encrypname = security.encrypt(hNum);
+        System.out.println("encryptName : " + encrypname);
+        createConnecction();
+        java.sql.Statement stm = con.createStatement();
+        String sql = "Select * From persion where Home_Number='" + encrypname + "'";
+        System.out.println("sql : " + sql);
+        ResultSet res = stm.executeQuery(sql);
+        List<Persion> persionList = new ArrayList<>();
+        while (res.next()) {
+            Persion pers = new Persion(res.getString("ID"), res.getString("Name"), res.getString("Sex"), res.getString("Address"), res.getString("TPNum"), res.getString("Birth_Date"), res.getString("Home_Number"));
+            Persion persion = security.decryptPersion(pers);
+            persionList.add(persion);
+        }
+        return persionList;
+    }
+
     public Home searchHome(String num) throws Exception {
         Home decryptedHome = new Home();
         String encryptedhomeid = security.encrypt(num);
