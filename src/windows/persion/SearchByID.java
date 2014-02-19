@@ -2,12 +2,15 @@ package windows.persion;
 
 import DBConections.DBCon;
 import datas.Persion;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import windows.Selection;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class SearchByID extends javax.swing.JFrame {
+
+    private static final Logger log = LoggerFactory.getLogger(SearchByID.class);
 
     public SearchByID() {
         initComponents();
@@ -217,12 +220,13 @@ public class SearchByID extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Persion Not Found ...");
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex);
+            log.error("Error " + ex);
+            JOptionPane.showMessageDialog(this, "Error");
         }
         TFID.setText(person.getId());
 
         TFName.setText(person.getName());
-        System.out.println("Name...." + person.getName());
+        log.info("Name...." + person.getName());
 
         TFSex.setText(person.getSex());
         TFAddress.setText(person.getAddress());
@@ -287,7 +291,8 @@ public class SearchByID extends javax.swing.JFrame {
                 }
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
+            log.error("Error " + ex);
+            JOptionPane.showMessageDialog(this, "Error");
         }
     }//GEN-LAST:event_btnEditActionPerformed
 
@@ -295,7 +300,7 @@ public class SearchByID extends javax.swing.JFrame {
         try {
             DBCon db = new DBCon();
             String id = TFID.getText();
-            System.out.println("id :" + id);
+            log.info("id :" + id);
             db.deletePersionData(id);
             JOptionPane.showMessageDialog(this, "Deleted ...");
             TFID.setText("");
@@ -306,7 +311,8 @@ public class SearchByID extends javax.swing.JFrame {
             TFbirthdate.setText("");
             TFhomeNumber.setText("");
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
+            log.error("Error " + ex);
+            JOptionPane.showMessageDialog(this, "Error");
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 

@@ -7,7 +7,12 @@ import javax.swing.JOptionPane;
 import securaty.Security;
 import windows.Selection;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class AddHomeData extends javax.swing.JFrame {
+
+    private static final Logger log = LoggerFactory.getLogger(AddHomeData.class);
 
     public AddHomeData() {
         initComponents();
@@ -171,7 +176,8 @@ public class AddHomeData extends javax.swing.JFrame {
                 TFtpnum.setText("");
                 TFmembers.setText("");
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage());
+                log.error("Error " + ex);
+                JOptionPane.showMessageDialog(this, "Error");
             }
         }
     }//GEN-LAST:event_btnSubmitActionPerformed

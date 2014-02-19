@@ -2,11 +2,13 @@ package windows.home;
 
 import DBConections.DBCon;
 import datas.Home;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import javax.swing.JOptionPane;
 
 public class SearchByHN extends javax.swing.JFrame {
+
+    private static final Logger log = LoggerFactory.getLogger(SearchByHN.class);
 
     public SearchByHN() {
         initComponents();
@@ -172,7 +174,8 @@ public class SearchByHN extends javax.swing.JFrame {
         try {
             home = db.searchHome(TFhoemnumber.getText());
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex);
+            log.error("Error " + ex);
+            JOptionPane.showMessageDialog(this, "Error");
         }
         if (home == null) {
             JOptionPane.showMessageDialog(this, "Home not found...");
@@ -216,7 +219,8 @@ public class SearchByHN extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Updated ...");
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex);
+            log.error("Error " + ex);
+            JOptionPane.showMessageDialog(this, "Error");
         }
 
 
@@ -238,7 +242,8 @@ public class SearchByHN extends javax.swing.JFrame {
             TFownername.setText("");
             TFtpnum.setText("");
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex);
+            log.error("Error " + ex);
+            JOptionPane.showMessageDialog(this, "Error");
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 

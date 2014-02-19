@@ -3,12 +3,15 @@ package windows.home;
 import DBConections.DBCon;
 import datas.Home;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import javax.swing.table.DefaultTableModel;
 import windows.Selection;
 
 public class SearchByOwner extends javax.swing.JFrame {
+
+    private static final Logger log = LoggerFactory.getLogger(SearchByOwner.class);
 
     public SearchByOwner() {
         initComponents();
@@ -144,7 +147,8 @@ public class SearchByOwner extends javax.swing.JFrame {
         try {
             homeList = new DBCon().getSearchHome(searchOwner);
         } catch (Exception ex) {
-            Logger.getLogger(SearchByOwner.class.getName()).log(Level.SEVERE, null, ex);
+            log.error("Error " + ex);
+            JOptionPane.showMessageDialog(this, "Error");
         }
         DefaultTableModel dtm = (DefaultTableModel) customerTable.getModel();
         dtm.setRowCount(0);

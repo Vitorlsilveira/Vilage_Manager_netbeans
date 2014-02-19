@@ -3,12 +3,16 @@ package windows.persion;
 import DBConections.DBCon;
 import datas.Persion;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.swing.table.DefaultTableModel;
 import windows.Selection;
 
 public class SearchByName extends javax.swing.JFrame {
+
+    private static final Logger log = LoggerFactory.getLogger(SearchByName.class);
 
     public SearchByName() {
         initComponents();
@@ -155,12 +159,12 @@ public class SearchByName extends javax.swing.JFrame {
         try {
             persionList = new DBCon().getSearchPersionByName(searchOwner);
         } catch (Exception ex) {
-            Logger.getLogger(SearchByName.class.getName()).log(Level.SEVERE, null, ex);
+            log.error("Error " + ex);
         }
         DefaultTableModel dtm = (DefaultTableModel) customerTable.getModel();
         dtm.setRowCount(0);
         for (Persion pers : persionList) {
-            Object rowData[] = {pers.getName(), pers.getId(), pers.getSex(), pers.getAddress(), pers.getTpnum(), pers.getBirthday(),pers.getHomeNumber()};
+            Object rowData[] = {pers.getName(), pers.getId(), pers.getSex(), pers.getAddress(), pers.getTpnum(), pers.getBirthday(), pers.getHomeNumber()};
             dtm.addRow(rowData);
         }
     }//GEN-LAST:event_reloadButtonActionPerformed

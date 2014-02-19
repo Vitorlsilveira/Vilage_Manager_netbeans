@@ -1,6 +1,7 @@
 package windows;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
 import windows.home.AddHomeData;
 import windows.home.SerchHome;
 import windows.persion.SerchPersion;
@@ -10,13 +11,13 @@ public class Selection extends javax.swing.JFrame {
 
     public Selection() {
         initComponents();
-        
+
         ButtonGroup group = new ButtonGroup();
         group.add(jRadioButton3);
         group.add(jRadioButton4);
         group.add(rdoaddahome);
         group.add(rdoserchahome);
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -35,6 +36,7 @@ public class Selection extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(236, 151, 66));
 
         jButton1.setText("Done");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -170,6 +172,8 @@ public class Selection extends javax.swing.JFrame {
             SerchHome serchhome = new SerchHome();
             serchhome.setVisible(true);
             this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select an Option");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

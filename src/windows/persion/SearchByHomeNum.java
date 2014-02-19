@@ -3,14 +3,16 @@ package windows.persion;
 import DBConections.DBCon;
 import datas.Persion;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import windows.Selection;
-import windows.persion.SerchPersion;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SearchByHomeNum extends javax.swing.JFrame {
+
+    private static final Logger log = LoggerFactory.getLogger(SearchByHomeNum.class);
 
     public SearchByHomeNum() {
         initComponents();
@@ -179,7 +181,8 @@ public class SearchByHomeNum extends javax.swing.JFrame {
                     throw new Exception();
                 }
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "wrong number or no members ");
+                log.error("Error " + ex);
+                JOptionPane.showMessageDialog(this, "Wrong number or no members ");
 
             }
             DefaultTableModel dtm = (DefaultTableModel) customerTable.getModel();
@@ -188,8 +191,9 @@ public class SearchByHomeNum extends javax.swing.JFrame {
                 Object rowData[] = {pers.getName(), pers.getId(), pers.getSex(), pers.getAddress(), pers.getTpnum(), pers.getBirthday(), pers.getHomeNumber()};
                 dtm.addRow(rowData);
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "engter home number");
+        } catch (Exception ex) {
+            log.error("Error " + ex);
+            JOptionPane.showMessageDialog(this, "Error");
         }
     }//GEN-LAST:event_reloadButtonActionPerformed
 

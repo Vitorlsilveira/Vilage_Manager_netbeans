@@ -1,17 +1,19 @@
 package windows.persion;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import datas.Persion;
 import DBConections.DBCon;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import logics.Logics;
-import securaty.Security;
 import windows.Selection;
 
 public class AddPersionData extends javax.swing.JFrame {
+
+    private static final Logger log = LoggerFactory.getLogger(AddPersionData.class);
 
     public AddPersionData() {
         initComponents();
@@ -38,6 +40,7 @@ public class AddPersionData extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(234, 156, 78));
 
         jLabel1.setText("Name");
 
@@ -152,7 +155,6 @@ public class AddPersionData extends javax.swing.JFrame {
                             .addComponent(jLabel7))
                         .addGap(91, 91, 91))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSubmit)
                             .addComponent(btnBack)
@@ -200,12 +202,14 @@ public class AddPersionData extends javax.swing.JFrame {
                         TFhomenumber.setText("");
 
                     } catch (SQLException ex) {
-                        JOptionPane.showMessageDialog(this, ex.getMessage());
+                        log.error("Error " + ex);
+                        JOptionPane.showMessageDialog(this, "Error...");
                     }
                 }
             }
         } catch (HeadlessException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
+            log.error("Error " + ex);
+            JOptionPane.showMessageDialog(this, "Error");
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
 

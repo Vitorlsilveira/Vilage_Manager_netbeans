@@ -6,12 +6,16 @@ import datas.Persion;
 import java.security.spec.AlgorithmParameterSpec;
 import java.security.spec.KeySpec;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.crypto.*;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
 
 public class Security {
 
+    private static final Logger log = LoggerFactory.getLogger(Security.class);
     //private Document document;
     Cipher ecipher;
     Cipher dcipher;
@@ -38,7 +42,7 @@ public class Security {
         encryptedPersion.setTpnum(encrypt(persion.getTpnum()));
         encryptedPersion.setBirthday(encrypt(persion.getBirthday()));
         encryptedPersion.setHomeNumber(encrypt(persion.getHomeNumber()));
-
+        log.info("Persion Encrypted");
         return encryptedPersion;
     }
 
@@ -53,7 +57,7 @@ public class Security {
         decryptedPersion.setTpnum(decrypt(persion.getTpnum()));
         decryptedPersion.setBirthday(decrypt(persion.getBirthday()));
         decryptedPersion.setHomeNumber(decrypt(persion.getHomeNumber()));
-
+        log.info("Persion Decrypted");
         return decryptedPersion;
     }
 
@@ -66,7 +70,7 @@ public class Security {
         encryptedHome.setAddress(encrypt(home.getAddress()));
         encryptedHome.setTpnumber(encrypt(home.getTpnumber()));
         encryptedHome.setNumofmembers(home.getNumofmembers());
-
+        log.info("Home Encrypted");
         return encryptedHome;
     }
 
@@ -79,7 +83,7 @@ public class Security {
         decryptedHome.setAddress(decrypt(home.getAddress()));
         decryptedHome.setTpnumber(decrypt(home.getTpnumber()));
         decryptedHome.setNumofmembers(home.getNumofmembers());
-
+        log.info("Home Decrypted");
         return decryptedHome;
     }
 
