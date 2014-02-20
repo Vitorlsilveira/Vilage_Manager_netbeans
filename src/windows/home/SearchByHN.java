@@ -229,19 +229,27 @@ public class SearchByHN extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        try {
-            DBCon db = new DBCon();
-            String homenumber = TFhoemnumber.getText();
-            db.delHomedetails(homenumber);
-            JOptionPane.showMessageDialog(this, "Deleted ...");
-            TFaddress.setText("");
-            TFhoemnumber.setText("");
-            TFmembers.setText("");
-            TFownername.setText("");
-            TFtpnum.setText("");
-        } catch (Exception ex) {
-            log.error("Error " + ex);
-            JOptionPane.showMessageDialog(this, "Error");
+
+        int selectedOption = JOptionPane.showConfirmDialog(null,
+                "Do you want to delete theis Home from the database?",
+                "Choose",
+                JOptionPane.YES_NO_OPTION);
+
+        if (selectedOption == JOptionPane.YES_OPTION) {
+            try {
+                DBCon db = new DBCon();
+                String homenumber = TFhoemnumber.getText();
+                db.delHomedetails(homenumber);
+                JOptionPane.showMessageDialog(this, "Deleted ...");
+                TFaddress.setText("");
+                TFhoemnumber.setText("");
+                TFmembers.setText("");
+                TFownername.setText("");
+                TFtpnum.setText("");
+            } catch (Exception ex) {
+                log.error("Error " + ex);
+                JOptionPane.showMessageDialog(this, "Error");
+            }
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 

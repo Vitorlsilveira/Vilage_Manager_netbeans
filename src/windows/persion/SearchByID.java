@@ -295,22 +295,30 @@ public class SearchByID extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        try {
-            DBCon db = new DBCon();
-            String id = TFID.getText();
-            log.info("id :" + id);
-            db.deletePersionData(id);
-            JOptionPane.showMessageDialog(this, "Deleted ...");
-            TFID.setText("");
-            TFName.setText("");
-            TFSex.setText("");
-            TFAddress.setText("");
-            TFTPNumber.setText("");
-            TFbirthdate.setText("");
-            TFhomeNumber.setText("");
-        } catch (Exception ex) {
-            log.error("Error " + ex);
-            JOptionPane.showMessageDialog(this, "Error");
+
+        int selectedOption = JOptionPane.showConfirmDialog(null,
+                "Do you want to delete theis Persion?",
+                "Choose",
+                JOptionPane.YES_NO_OPTION);
+
+        if (selectedOption == JOptionPane.YES_OPTION) {
+            try {
+                DBCon db = new DBCon();
+                String id = TFID.getText();
+                log.info("id :" + id);
+                db.deletePersionData(id);
+                JOptionPane.showMessageDialog(this, "Deleted ...");
+                TFID.setText("");
+                TFName.setText("");
+                TFSex.setText("");
+                TFAddress.setText("");
+                TFTPNumber.setText("");
+                TFbirthdate.setText("");
+                TFhomeNumber.setText("");
+            } catch (Exception ex) {
+                log.error("Error " + ex);
+                JOptionPane.showMessageDialog(this, "Error");
+            }
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 

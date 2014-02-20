@@ -4,13 +4,17 @@
  */
 package windows.persion;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import DBConections.DBCon;
 import datas.Persion;
 import javax.swing.JOptionPane;
 
 public class Preson extends javax.swing.JDialog {
 
-    public Preson(java.awt.Frame parent, boolean modal,Persion pers) {
+    private static final Logger log = LoggerFactory.getLogger(Preson.class);
+
+    public Preson(java.awt.Frame parent, boolean modal, Persion pers) {
         super(parent, modal);
         initComponents();
         TFID.setText(pers.getId());
@@ -209,7 +213,7 @@ public class Preson extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TFSexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFSexActionPerformed
-        
+
     }//GEN-LAST:event_TFSexActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
@@ -240,26 +244,35 @@ public class Preson extends javax.swing.JDialog {
                 }
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
+            log.error("Error " + ex);
+            JOptionPane.showMessageDialog(this, "Error");
         }
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-         try {
-            DBCon db = new DBCon();
-            String id = TFID.getText();
-            System.out.println("id :" + id);
-            db.deletePersionData(id);
-            JOptionPane.showMessageDialog(this, "Deleted ...");
-            TFID.setText("");
-            TFName.setText("");
-            TFSex.setText("");
-            TFAddress.setText("");
-            TFTPNumber.setText("");
-            TFbirthdate.setText("");
-            TFhomeNumber.setText("");
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
+
+        int selectedOption = JOptionPane.showConfirmDialog(null,
+                "Do you want to delete theis Persion?",
+                "Choose",
+                JOptionPane.YES_NO_OPTION);
+
+        if (selectedOption == JOptionPane.YES_OPTION) {
+            try {
+                DBCon db = new DBCon();
+                String id = TFID.getText();
+                System.out.println("id :" + id);
+                db.deletePersionData(id);
+                JOptionPane.showMessageDialog(this, "Deleted ...");
+                TFID.setText("");
+                TFName.setText("");
+                TFSex.setText("");
+                TFAddress.setText("");
+                TFTPNumber.setText("");
+                TFbirthdate.setText("");
+                TFhomeNumber.setText("");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Error... Can not delete");
+            }
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
