@@ -30,7 +30,6 @@ public class SecurityTest {
 
     @Test(dataProvider = "addDataProvider")
     public void getEncryptTest(String str) {
-        //  String str = "I am KaSun @ 4";
         String encryptedStr = null;
         try {
             encryptedStr = security.encrypt(str);
