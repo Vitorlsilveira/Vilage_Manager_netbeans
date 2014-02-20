@@ -4,12 +4,17 @@ public class Logics {
 
     public String getSexFromId(String id) {
 
-        String sexStr = id.substring(2, 5);
-        int sexInt = Integer.parseInt(sexStr);
-        if (sexInt < 500) {
-            return "Male";
+        try {
+            String sexStr = id.substring(2, 5);
+            int sexInt = Integer.parseInt(sexStr);
+            if (sexInt < 500) {
+                return "Male";
+            }
+            return "Female";
+        } catch (Exception ex) {
+            throw new RuntimeException("Invalid numbers");
         }
-        return "Female";
+
     }
 
     public String getBirthDateUsingId(String id) {
@@ -51,7 +56,7 @@ public class Logics {
         } else if (num <= 366) {
             date = year + "/December/" + Integer.toString((num - 335));
         } else {
-            date = "Wrong Id Number";
+            throw new RuntimeException("Wrong Id Number");
         }
         return date;
     }
