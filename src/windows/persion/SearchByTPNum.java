@@ -3,6 +3,7 @@ package windows.persion;
 import DBConections.DBCon;
 import datas.Persion;
 import java.util.List;
+import javax.swing.JOptionPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javax.swing.table.DefaultTableModel;
@@ -107,7 +108,7 @@ public class SearchByTPNum extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -135,7 +136,7 @@ public class SearchByTPNum extends javax.swing.JFrame {
                     .addComponent(TFSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -158,12 +159,18 @@ public class SearchByTPNum extends javax.swing.JFrame {
             persionList = new DBCon().getSearchPersion(searchOwner);
         } catch (Exception ex) {
             log.error("Error " + ex);
+            JOptionPane.showMessageDialog(this, "Error");
         }
         DefaultTableModel dtm = (DefaultTableModel) customerTable.getModel();
         dtm.setRowCount(0);
+        int i = 0;
         for (Persion pers : persionList) {
             Object rowData[] = {pers.getName(), pers.getId(), pers.getSex(), pers.getAddress(), pers.getTpnum(), pers.getBirthday(), pers.getHomeNumber()};
             dtm.addRow(rowData);
+            i++;
+        }
+        if(i == 0){
+            JOptionPane.showMessageDialog(this, "No Persions Found");
         }
     }//GEN-LAST:event_reloadButtonActionPerformed
 

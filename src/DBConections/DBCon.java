@@ -13,10 +13,11 @@ import datas.Persion;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import securaty.Security;
 
 public class DBCon {
-    
+
     private static final Logger log = LoggerFactory.getLogger(DBCon.class);
 
     public Connection con = null;
@@ -27,19 +28,21 @@ public class DBCon {
 
     public void createConnecction() {
         try {
+            Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost/vilage", "root", "root");
             log.info("Connection Created");
-        } catch (SQLException ex) {
-            log.error("Error "+ex);
+        } catch (ClassNotFoundException | SQLException ex) {
+            log.error("Error in Connection " + ex);
         }
     }
 
     public void closeConnection() throws SQLException {
         con.close();
+        con = null;
         log.info("Connection closed");
     }
 
-    public void addPersionToDatabase(Persion persion) throws SQLException {
+    public void addPersionToDatabase(Persion persion) {
         try {
             Persion encryptedPersion = new Persion();
             encryptedPersion = security.encryptPersion(persion);
@@ -50,31 +53,36 @@ public class DBCon {
 
             Statement st = (Statement) con.createStatement();
             st.executeUpdate(sql);
-            log.info("Quary Exececuted");
+            log.info("addPersionToDatabase Quary Exececuted");
             closeConnection();
         } catch (Exception ex) {
-            log.error("Error "+ex);
+            log.error("Error " + ex);
+            throw new RuntimeException("Persion ID is already in database");
         }
     }
 
-    public void addHomeToDatabase(Home home) throws SQLException {
+    public void addHomeToDatabase(Home home) {
         Home encryptedHome = new Home();
         try {
-            encryptedHome = security.encryptHome(home);
+            try {
+                encryptedHome = security.encryptHome(home);
+            } catch (Exception ex) {
+                log.error("Error " + ex);
+            }
+            createConnecction();
+            String sql = "INSERT INTO home VALUES('" + encryptedHome.getHoemnumber() + "','" + encryptedHome.getOwner() + "','" + encryptedHome.getAddress() + "','"
+                    + "" + encryptedHome.getTpnumber() + "','" + encryptedHome.getNumofmembers() + "');";
+            Statement st = (Statement) con.createStatement();
+            st.executeUpdate(sql);
+            log.info("addHomeToDatabase Quary Exececuted");
+            closeConnection();
         } catch (Exception ex) {
-            log.error("Error "+ex);
+            log.error("Error " + ex);
+            throw new RuntimeException("Home ID already in Database");
         }
-
-        createConnecction();
-        String sql = "INSERT INTO home VALUES('" + encryptedHome.getHoemnumber() + "','" + encryptedHome.getOwner() + "','" + encryptedHome.getAddress() + "','"
-                + "" + encryptedHome.getTpnumber() + "','" + encryptedHome.getNumofmembers() + "');";
-        Statement st = (Statement) con.createStatement();
-        st.executeUpdate(sql);
-        log.info("Quary Exececuted");
-        closeConnection();
     }
 
-    public Persion searchPersons(String id) throws Exception {
+    public Persion searchPersons(String id) {
         Persion decryptedPersion = null;
         Persion prsn = null;
         try {
@@ -84,19 +92,20 @@ public class DBCon {
             Connection connection = con;
             java.sql.Statement stm = (java.sql.Statement) connection.createStatement();
             ResultSet res = stm.executeQuery(sql);
-            log.info("Quary Exececuted");
+            log.info("searchPersons Quary Exececuted");
             if (res.next()) {
                 prsn = new Persion(res.getString("ID"), res.getString("Name"), res.getString("Sex"), res.getString("Address"), res.getString("TPNum"), res.getString("Birth_date"), res.getString("Home_Number"));
                 try {
                     decryptedPersion = security.decryptPersion(prsn);
                 } catch (Exception ex) {
-                    log.error("Error "+ex);
+                    log.error("Error " + ex);
                     return null;
                 }
             }
             closeConnection();
         } catch (Exception ex) {
-            log.error("Error "+ex);
+            log.error("Error " + ex);
+            // throw new RunTimeException("swf");
             return null;
         }
 
@@ -105,12 +114,11 @@ public class DBCon {
 
     public List<Persion> getSearchPersionByHN(String hNum) throws Exception {
         String encrypname = security.encrypt(hNum);
-        log.info("encryptName : " + encrypname);
         createConnecction();
         java.sql.Statement stm = con.createStatement();
         String sql = "Select * From persion where Home_Number='" + encrypname + "'";
         ResultSet res = stm.executeQuery(sql);
-        log.info("Quary Exececuted");
+        log.info("getSearchPersionByHN Quary Exececuted");
         List<Persion> persionList = new ArrayList<>();
         while (res.next()) {
             Persion pers = new Persion(res.getString("ID"), res.getString("Name"), res.getString("Sex"), res.getString("Address"), res.getString("TPNum"), res.getString("Birth_Date"), res.getString("Home_Number"));
@@ -120,28 +128,32 @@ public class DBCon {
         return persionList;
     }
 
-    public Home searchHome(String num) throws Exception {
+    public Home searchHome(String num) {
         Home decryptedHome = new Home();
-        String encryptedhomeid = security.encrypt(num);
-        log.info("encryptedhomeid : " + encryptedhomeid);
-        createConnecction();
-        String sql = "select * from home where Home_Number='" + encryptedhomeid + "'";
-        Connection connection = con;
-        java.sql.Statement stm = (java.sql.Statement) connection.createStatement();
-        ResultSet res = stm.executeQuery(sql);
-        log.info("Quary Exececuted");
-        if (res.next()) {
-            Home home = new Home(res.getString("Home_Number"), res.getString("Owner"), res.getString("Address"), res.getString("TP_Number"), res.getInt("NumberOfMembers"));
-            System.out.println("Home number : " + home.getHoemnumber());
-            try {
-                decryptedHome = security.decryptHome(home);
-            } catch (Exception ex) {
-                log.error("Error... "+ex);
-                return null;
+        try {
+            String encryptedhomeid = security.encrypt(num);
+            createConnecction();
+            String sql = "select * from home where Home_Number='" + encryptedhomeid + "'";
+            Connection connection = con;
+            java.sql.Statement stm = (java.sql.Statement) connection.createStatement();
+            ResultSet res = stm.executeQuery(sql);
+            log.info("searchHome Quary Exececuted");
+            if (res.next()) {
+                Home home = new Home(res.getString("Home_Number"), res.getString("Owner"), res.getString("Address"), res.getString("TP_Number"), res.getInt("NumberOfMembers"));
+                System.out.println("Home number : " + home.getHoemnumber());
+                try {
+                    decryptedHome = security.decryptHome(home);
+                } catch (Exception ex) {
+                    log.error("Error... " + ex);
+                    return null;
+                }
             }
+            closeConnection();
+            return decryptedHome;
+        } catch (Exception ex) {
+            log.error("Error " + ex);
+            return null;
         }
-        closeConnection();
-        return decryptedHome;
     }
 
     public List<Home> getSearchHome(String name) throws Exception {
@@ -151,7 +163,7 @@ public class DBCon {
         java.sql.Statement stm = con.createStatement();
         String sql = "Select * From home where Owner='" + encryptName + "'";
         ResultSet res = stm.executeQuery(sql);
-        log.info("Quary Exececuted");
+        log.info("getSearchHome Quary Exececuted");
         List<Home> customerList = new ArrayList<>();
         while (res.next()) {
             Home hme = new Home(res.getString("Home_Number"), res.getString("Owner"), res.getString("Address"), res.getString("TP_Number"), res.getInt("NumberOfMembers"));
@@ -167,7 +179,7 @@ public class DBCon {
         try {
             encryptedpersion = security.encryptPersion(persion);
         } catch (Exception ex) {
-            log.error("Error "+ex);
+            log.error("Error " + ex);
         }
         createConnecction();
         String sql = "UPDATE persion SET Name= '" + encryptedpersion.getName() + "',"
@@ -176,7 +188,7 @@ public class DBCon {
 
         Statement st = (Statement) con.createStatement();
         st.executeUpdate(sql);
-        log.info("Quary Exececuted");
+        log.info("updatePersionData Quary Exececuted");
         closeConnection();
     }
 
@@ -186,13 +198,13 @@ public class DBCon {
             encryptid = security.encrypt(id);
             log.info("decrypted ID : " + security.decrypt(encryptid));
         } catch (Exception ex) {
-            log.error("Error "+ex);
+            log.error("Error " + ex);
         }
         createConnecction();
         String sql = "DELETE FROM persion WHERE ID='" + encryptid + "';";
         Statement st = (Statement) con.createStatement();
         st.executeUpdate(sql);
-        log.info("Quary Exececuted");
+        log.info("deletePersionData Quary Exececuted");
         closeConnection();
     }
 
@@ -203,7 +215,7 @@ public class DBCon {
         java.sql.Statement stm = con.createStatement();
         String sql = "Select * From persion where TPNum='" + encryptNum + "'";
         ResultSet res = stm.executeQuery(sql);
-        log.info("Quary Exececuted");
+        log.info("getSearchPersion Quary Exececuted");
         List<Persion> persionList = new ArrayList<>();
         while (res.next()) {
             Persion pers = new Persion(res.getString("ID"), res.getString("Name"), res.getString("Sex"), res.getString("Address"), res.getString("TPNum"), res.getString("Birth_Date"), res.getString("Home_Number"));
@@ -221,7 +233,7 @@ public class DBCon {
         java.sql.Statement stm = con.createStatement();
         String sql = "Select * From persion where Name='" + encrypname + "'";
         ResultSet res = stm.executeQuery(sql);
-        log.info("Quary Exececuted");
+        log.info("getSearchPersionByName Quary Exececuted");
         List<Persion> persionList = new ArrayList<>();
         while (res.next()) {
             Persion pers = new Persion(res.getString("ID"), res.getString("Name"), res.getString("Sex"), res.getString("Address"), res.getString("TPNum"), res.getString("Birth_Date"), res.getString("Home_Number"));
@@ -237,7 +249,7 @@ public class DBCon {
         try {
             encryptedhome = security.encryptHome(home);
         } catch (Exception ex) {
-            log.error("Error "+ex);
+            log.error("Error " + ex);
         }
         createConnecction();
 
@@ -248,7 +260,7 @@ public class DBCon {
 
         Statement st = (Statement) con.createStatement();
         st.executeUpdate(sql);
-        log.info("Quary Exececuted");
+        log.info("editHomeDetails Quary Exececuted");
         closeConnection();
     }
 
@@ -257,13 +269,13 @@ public class DBCon {
         try {
             encrypthomeid = security.encrypt(homeid);
         } catch (Exception ex) {
-            log.error("Error "+ex);
+            log.error("Error " + ex);
         }
         createConnecction();
         String sql = "DELETE FROM home WHERE Home_Number='" + encrypthomeid + "';";
         Statement st = (Statement) con.createStatement();
         st.executeUpdate(sql);
-        log.info("Quary Exececuted");
+        log.info("delHomedetails Quary Exececuted");
         closeConnection();
     }
 }

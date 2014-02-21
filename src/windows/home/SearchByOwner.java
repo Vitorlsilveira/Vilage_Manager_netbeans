@@ -100,7 +100,7 @@ public class SearchByOwner extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jButton2)
@@ -125,7 +125,7 @@ public class SearchByOwner extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TFSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -146,15 +146,21 @@ public class SearchByOwner extends javax.swing.JFrame {
         List<Home> homeList = null;
         try {
             homeList = new DBCon().getSearchHome(searchOwner);
+
+            DefaultTableModel dtm = (DefaultTableModel) customerTable.getModel();
+            dtm.setRowCount(0);
+            int i = 0;
+            for (Home home : homeList) {
+                Object rowData[] = {home.getHoemnumber(), home.getOwner(), home.getAddress(), home.getTpnumber(), home.getNumofmembers()};
+                dtm.addRow(rowData);
+                i++;
+            }
+            if (i == 0) {
+                JOptionPane.showMessageDialog(this, "No Homes Found");
+            }
         } catch (Exception ex) {
             log.error("Error " + ex);
             JOptionPane.showMessageDialog(this, "Error");
-        }
-        DefaultTableModel dtm = (DefaultTableModel) customerTable.getModel();
-        dtm.setRowCount(0);
-        for (Home home : homeList) {
-            Object rowData[] = {home.getHoemnumber(), home.getOwner(), home.getAddress(), home.getTpnumber(), home.getNumofmembers()};
-            dtm.addRow(rowData);
         }
     }//GEN-LAST:event_reloadButtonActionPerformed
 

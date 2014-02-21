@@ -3,7 +3,6 @@ package logics;
 public class Logics {
 
     public String getSexFromId(String id) {
-
         try {
             String sexStr = id.substring(2, 5);
             int sexInt = Integer.parseInt(sexStr);

@@ -2,6 +2,7 @@ package windows.home;
 
 import DBConections.DBCon;
 import datas.Home;
+import java.awt.HeadlessException;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import securaty.Security;
@@ -175,7 +176,7 @@ public class AddHomeData extends javax.swing.JFrame {
                 TFaddress.setText("");
                 TFtpnum.setText("");
                 TFmembers.setText("");
-            } catch (SQLException ex) {
+            } catch (HeadlessException ex) {
                 log.error("Error " + ex);
                 JOptionPane.showMessageDialog(this, "Error");
             }

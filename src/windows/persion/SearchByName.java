@@ -168,9 +168,14 @@ public class SearchByName extends javax.swing.JFrame {
         }
         DefaultTableModel dtm = (DefaultTableModel) customerTable.getModel();
         dtm.setRowCount(0);
+        int i = 0;
         for (Persion pers : persionList) {
             Object rowData[] = {pers.getName(), pers.getId(), pers.getSex(), pers.getAddress(), pers.getTpnum(), pers.getBirthday(),pers.getHomeNumber()};
             dtm.addRow(rowData);
+            i++;
+        }
+        if (i==0){
+            JOptionPane.showMessageDialog(this, "No Persions Found");
         }
     }//GEN-LAST:event_reloadButtonActionPerformed
 
