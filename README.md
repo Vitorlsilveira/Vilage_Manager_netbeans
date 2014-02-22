@@ -1,5 +1,5 @@
-Vilage Data Manager
-=======================
+Vilage Data Manager - 1.0.1
+===========================
 
 This is a Simple Desktop application for Village Management. java and netbeans ID were used here. Now project has started and still developing. First use case is to add a persion data into database. Database name is vilage it has two table named person and home. 
 
@@ -15,8 +15,8 @@ Or Download the zip file if U don't have git installed.
 Open netbeans and go to File
 File ---> open project, then select the project on directory
 
-*  Make sure to add mysql-java-connector to the class path in netbeans project. You can download it from 
-(repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.28/mysql-connector-java-5.1.28.jar) this link.  Copy the link and paste it in address bar and press Enter and Download it.
+*  Make sure to add sqlite-jdbc java connector to the class path in netbeans project. You can download it from 
+(repo1.maven.org/maven2/org/xerial/sqlite-jdbc/3.7.2/sqlite-jdbc-3.7.2.jar) this link.  Copy the link and paste it in address bar and press Enter and Download it.
 Then go to Netbeans Project. Select libraries and right click and select add jar/folder then select add external jar and select the downloaded connector. 
 
 * Add slf4j-api-1.7.5.jar to the Libraries as above. Use this Link to Download repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5.jar

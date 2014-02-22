@@ -3,17 +3,18 @@ package DBConections;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import com.mysql.jdbc.Statement;
+//import com.mysql.jdbc.Statement;
 import datas.Home;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import datas.Persion;
+import java.io.File;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import securaty.Security;
 
 public class DBCon {
@@ -26,10 +27,34 @@ public class DBCon {
     public DBCon() {
     }
 
+    public void crateDatabase() {
+
+        File file = new File("vilage.db");
+        if (file.exists()) //here's how to check
+        {
+            log.info("This database name already exists");
+        } else {
+
+            try {
+                createConnecction();
+                java.sql.Statement stat = con.createStatement();
+                stat.executeUpdate("CREATE TABLE persion(Name varchar(150) not NULL, ID varchar(100) not NULL PRIMARY KEY,Sex varchar(60) not NULL, Address varchar(250) not NULL, TPNum varchar(60) not NULL, Birth_Date varchar(150), Home_Number varchar(30) not Null);");
+                stat.executeUpdate("CREATE TABLE home(Home_Number varchar(30) not NULL PRIMARY KEY, Owner varchar(80) not NULL,Address varchar(150) not NULL, TP_Number  varchar(45), NumberOfMembers int(15));");
+                log.info("Database Created...");
+                closeConnection();
+            } catch (SQLException ex) {
+                log.error("Error " + ex);
+            }
+        }
+    }
+
     public void createConnecction() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/vilage", "root", "root");
+            //Class.forName("com.mysql.jdbc.Driver");
+            // con = DriverManager.getConnection("jdbc:mysql://localhost/vilage", "root", "root");
+            Class.forName("org.sqlite.JDBC");
+            con = DriverManager.getConnection("jdbc:sqlite:vilage.db");
+
             log.info("Connection Created");
         } catch (ClassNotFoundException | SQLException ex) {
             log.error("Error in Connection " + ex);
@@ -72,7 +97,7 @@ public class DBCon {
             createConnecction();
             String sql = "INSERT INTO home VALUES('" + encryptedHome.getHoemnumber() + "','" + encryptedHome.getOwner() + "','" + encryptedHome.getAddress() + "','"
                     + "" + encryptedHome.getTpnumber() + "','" + encryptedHome.getNumofmembers() + "');";
-            Statement st = (Statement) con.createStatement();
+            Statement st = con.createStatement();
             st.executeUpdate(sql);
             log.info("addHomeToDatabase Quary Exececuted");
             closeConnection();
