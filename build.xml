@@ -69,5 +69,19 @@
     properties which you can use, check the target you are overriding in the
     nbproject/build-impl.xml file. 
 
-    -->
+	<target name="-post-jar">
+  		<jar jarfile="dist/Combined-dist.jar">
+   		 <zipfileset src="${dist.jar}" excludes="META-INF/*" />
+    		<zipfileset src="lib/log4j-1.2.17.jar" excludes="META-INF/*" />
+    		<zipfileset src="lib/slf4j-api-1.7.5.jar" excludes="META-INF/*" />
+		<zipfileset src="lib/slf4j-log4j12-1.7.5.jar" excludes="META-INF/*" />
+		<zipfileset src="lib/sqlite-jdbc-3.7.2.jar" excludes="META-INF/*" />
+   	 	<manifest>
+       		 <attribute name="Main-Class" value="vilagedatamaneger.VilageDataManeger"/>
+    		</manifest>
+  		</jar>
+	</target>
+
+	-->
+
 </project>
