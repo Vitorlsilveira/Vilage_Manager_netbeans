@@ -165,7 +165,6 @@ public class DBCon {
             log.info("searchHome Quary Exececuted");
             if (res.next()) {
                 Home home = new Home(res.getString("Home_Number"), res.getString("Owner"), res.getString("Address"), res.getString("TP_Number"), res.getInt("NumberOfMembers"));
-                System.out.println("Home number : " + home.getHoemnumber());
                 try {
                     decryptedHome = security.decryptHome(home);
                 } catch (Exception ex) {
@@ -235,7 +234,6 @@ public class DBCon {
 
     public List<Persion> getSearchPersion(String tPNum) throws Exception {
         String encryptNum = security.encrypt(tPNum);
-        log.info("encryptTPNum : " + encryptNum);
         createConnecction();
         java.sql.Statement stm = con.createStatement();
         String sql = "Select * From persion where TPNum='" + encryptNum + "'";
@@ -253,7 +251,6 @@ public class DBCon {
 
     public List<Persion> getSearchPersionByName(String name) throws Exception {
         String encrypname = security.encrypt(name);
-        log.info("encryptName : " + encrypname);
         createConnecction();
         java.sql.Statement stm = con.createStatement();
         String sql = "Select * From persion where Name='" + encrypname + "'";

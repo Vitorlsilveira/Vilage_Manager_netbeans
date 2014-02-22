@@ -222,21 +222,20 @@ public class SearchByID extends javax.swing.JFrame {
             person = new DBCon().searchPersons(TFID.getText());
             if (person == null) {
                 JOptionPane.showMessageDialog(this, "Persion Not Found ...");
+            } else {
+                TFID.setText(person.getId());
+                TFName.setText(person.getName());
+                TFSex.setText(person.getSex());
+                TFAddress.setText(person.getAddress());
+                TFTPNumber.setText(person.getTpnum());
+                TFbirthdate.setText(person.getBirthday());
+                TFhomeNumber.setText(person.getHomeNumber());
             }
+
         } catch (Exception ex) {
             log.error("Error " + ex);
             JOptionPane.showMessageDialog(this, "Error");
         }
-        TFID.setText(person.getId());
-
-        TFName.setText(person.getName());
-
-        TFSex.setText(person.getSex());
-        TFAddress.setText(person.getAddress());
-        TFTPNumber.setText(person.getTpnum());
-        TFbirthdate.setText(person.getBirthday());
-        TFhomeNumber.setText(person.getHomeNumber());
-
     }//GEN-LAST:event_bSearchActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
