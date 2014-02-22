@@ -23,7 +23,5 @@ Then go to Netbeans Project. Select libraries and right click and select add jar
 * Add slf4j-log4j12-1.7.5.jar to the Libraries. Use link repo1.maven.org/maven2/org/slf4j/slf4j-log4j12/1.7.5/slf4j-log4j12-1.7.5.jar
 * Add log4j-1.2.17.jar to Libraries. Use repo1.maven.org/maven2/log4j/log4j/1.2.17/log4j-1.2.17.jar
 
-And import sql file (in project folder vilage..sql) in phpmyadmin. It will create the suitable database for project.
-
 Then run the main class and check whether it correctly run. You can develop the project. 
 
