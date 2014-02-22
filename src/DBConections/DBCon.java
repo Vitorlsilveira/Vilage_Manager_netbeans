@@ -333,4 +333,21 @@ public class DBCon {
         closeConnection();
         return customerList;
     }
+
+    public String getPhoneNumberInPersionSerch(String homeIdNum) throws Exception {
+        try {
+            String encryptedHomeId = security.encrypt(homeIdNum);
+            createConnecction();
+            java.sql.Statement stm = con.createStatement();
+            String sql = "SELECT TP_Number FROM home WHERE Home_Number = '" + encryptedHomeId + "';";
+            ResultSet res = stm.executeQuery(sql);
+            log.info("Excecuted Quary in getPhoneNumberInPersionSerch");
+            String homeTpNum = security.decrypt(res.getString("TP_Number"));
+            closeConnection();
+            return homeTpNum;
+        } catch (SQLException ex) {
+            log.error("Error " + ex);
+        }
+        return "";
+    }
 }
