@@ -4,8 +4,10 @@ import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import windows.home.AddHomeData;
 import windows.home.SerchHome;
+import windows.home.ViewAllHome;
 import windows.persion.SerchPersion;
 import windows.persion.AddPersionData;
+import windows.persion.ViewAllPerson;
 
 public class Selection extends javax.swing.JFrame {
 
@@ -17,6 +19,8 @@ public class Selection extends javax.swing.JFrame {
         group.add(jRadioButton4);
         group.add(rdoaddahome);
         group.add(rdoserchahome);
+        group.add(jRBview);
+        group.add(jRBHome);
 
     }
 
@@ -30,13 +34,16 @@ public class Selection extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
+        jRBview = new javax.swing.JRadioButton();
         jButton2 = new javax.swing.JButton();
         rdoaddahome = new javax.swing.JRadioButton();
         rdoserchahome = new javax.swing.JRadioButton();
         jButton3 = new javax.swing.JButton();
+        jRBHome = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(236, 151, 66));
+        setResizable(false);
 
         jButton1.setText("Done");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -59,6 +66,13 @@ public class Selection extends javax.swing.JFrame {
             }
         });
 
+        jRBview.setText("View All Persons");
+        jRBview.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRBviewActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -66,6 +80,7 @@ public class Selection extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRBview)
                     .addComponent(jRadioButton3)
                     .addComponent(jRadioButton4))
                 .addContainerGap())
@@ -75,9 +90,11 @@ public class Selection extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(45, Short.MAX_VALUE)
                 .addComponent(jRadioButton3)
-                .addGap(36, 36, 36)
+                .addGap(18, 18, 18)
                 .addComponent(jRadioButton4)
-                .addGap(26, 26, 26))
+                .addGap(18, 18, 18)
+                .addComponent(jRBview, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
 
         jButton2.setText("Back");
@@ -108,18 +125,12 @@ public class Selection extends javax.swing.JFrame {
             }
         });
 
+        jRBHome.setText("View All Home");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rdoaddahome)
-                    .addComponent(rdoserchahome))
-                .addGap(115, 115, 115))
             .addGroup(layout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -127,7 +138,16 @@ public class Selection extends javax.swing.JFrame {
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rdoaddahome)
+                    .addComponent(rdoserchahome)
+                    .addComponent(jRBHome))
+                .addGap(113, 113, 113))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,14 +159,16 @@ public class Selection extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(58, 58, 58)
                         .addComponent(rdoaddahome)
-                        .addGap(32, 32, 32)
-                        .addComponent(rdoserchahome)))
+                        .addGap(18, 18, 18)
+                        .addComponent(rdoserchahome)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRBHome)))
                 .addGap(80, 80, 80)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton3)
                     .addComponent(jButton2))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         pack();
@@ -172,7 +194,14 @@ public class Selection extends javax.swing.JFrame {
             SerchHome serchhome = new SerchHome();
             serchhome.setVisible(true);
             this.dispose();
-        } else {
+        }else if (jRBview.isSelected()) {
+            new ViewAllPerson().setVisible(true);
+            this.dispose();
+        }else if (jRBHome.isSelected()) {
+            new ViewAllHome().setVisible(true);
+            this.dispose();
+        }
+        else {
             JOptionPane.showMessageDialog(this, "Please select an Option");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -203,6 +232,10 @@ public class Selection extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jRBviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBviewActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRBviewActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -210,6 +243,8 @@ public class Selection extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRBHome;
+    private javax.swing.JRadioButton jRBview;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JRadioButton rdoaddahome;
