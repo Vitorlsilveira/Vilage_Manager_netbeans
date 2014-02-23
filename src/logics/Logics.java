@@ -1,6 +1,11 @@
 package logics;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Logics {
+    
+    private static final Logger log = LoggerFactory.getLogger(Logics.class);
 
     public String getSexFromId(String id) {
         try {
@@ -10,7 +15,8 @@ public class Logics {
                 return "Male";
             }
             return "Female";
-        } catch (Exception ex) {
+        } catch (NumberFormatException ex) {
+            log.error("Error "+ex);
             throw new RuntimeException("Invalid numbers");
         }
 
