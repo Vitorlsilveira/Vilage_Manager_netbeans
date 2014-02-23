@@ -68,19 +68,21 @@
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="TFSex" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="TFID" min="-2" pref="156" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                                  <Component id="TFID" min="-2" pref="129" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
                                   <Component id="bSearch" min="-2" pref="93" max="-2" attributes="0"/>
                               </Group>
                               <Component id="TFName" min="-2" pref="359" max="-2" attributes="0"/>
                               <Component id="TFAddress" alignment="0" min="-2" pref="359" max="-2" attributes="0"/>
-                              <Component id="TFhomeNumber" alignment="0" min="-2" pref="359" max="-2" attributes="0"/>
-                              <Component id="TFhomeTp" alignment="0" min="-2" pref="359" max="-2" attributes="0"/>
-                              <Component id="TFTPNumber" alignment="0" min="-2" pref="359" max="-2" attributes="0"/>
-                              <Component id="TFbirthdate" alignment="0" min="-2" pref="359" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="TFhomeNumber" alignment="0" pref="117" max="32767" attributes="0"/>
+                                  <Component id="TFbirthdate" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="TFhomeTp" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="TFTPNumber" alignment="0" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>

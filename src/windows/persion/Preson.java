@@ -126,7 +126,7 @@ public class Preson extends javax.swing.JDialog {
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(48, 48, 48)
                                     .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(100, 100, 100)
+                                    .addGap(58, 58, 58)
                                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

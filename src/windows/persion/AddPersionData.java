@@ -42,12 +42,16 @@ public class AddPersionData extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(234, 156, 78));
 
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel1.setText("Name");
 
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel2.setText("ID num");
 
+        jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel4.setText("Address");
 
+        jLabel5.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel5.setText("TP Num");
 
         btnSubmit.setText("Submit");
@@ -79,7 +83,8 @@ public class AddPersionData extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel6.setText("Add Persions Datas");
 
-        jLabel7.setText("Home Number");
+        jLabel7.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jLabel7.setText("Home ID Number");
 
         jButton1.setText("Exit");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
